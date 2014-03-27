@@ -1,10 +1,10 @@
 {
   "name": "offlines_demo",
-  "version": "0.0.0",
-  "description": "offlines-demo",
+  "version": "0.1.0",
+  "description": "Record amusement park ride times whether or not you're connected to the web.",
   "main": "server.js",
   "author": {
-    "name": "cshoemaker",
-    "email": ""
+    "name": "Craig Shoemaker",
+    "email": "cshoemaker@infragistics.com"
   }
 }

@@ -1,0 +1,56 @@
+﻿@html.extend('layout', function(model){
+
+	@html.block('head', function(model){
+        <link rel="stylesheet" href="lib/offline/themes/offline-theme-chrome.css" />
+		<link rel="stylesheet" href="lib/offline/themes/offline-language-english.css" />
+    })
+
+	@html.block('body', function(model){
+	
+		@if(model.error){
+			<p class="alert alert-danger">@model.error</p>
+		}
+
+		<div class="row">
+			<div class="col-sm-6">
+				@model.parks.forEach(function(park){
+					<h2>@park.name</h2>
+
+					<ul>
+						@park.rides.forEach(function(ride){
+							<li>@ride.name</li>
+						})
+					</ul>
+				})
+			</div>
+			<div class="col-sm-3">
+		        @if(model.flashError.length > 0){
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Oops!</strong> @model.flashError
+                    </div>
+		        }	
+				<form id="new-park" method="post" action="/new">
+					<input type="text" placeholder="park name" class="form-control" id="parkName" name="parkName" />
+					<input type="submit" value="Add" class="btn btn-default btn-primary btn-sm" />
+				</form>
+			
+			</div>
+		</div>
+    })
+
+	@html.block('scripts', function(model){
+		<script src="lib/offline/offline.min.js"></script>
+		<script src="lib/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
+        <script>
+            $(function () {
+                $('#new-park').on('submit', function (e) {
+                    if ($('#parkName').val() === '') {
+                        return false;
+                    }
+                });
+            });
+        </script>
+    })
+
+})

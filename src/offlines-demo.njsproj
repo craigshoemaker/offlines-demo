@@ -29,9 +29,71 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="config.js" />
+    <Compile Include="controllers\index.js" />
+    <Compile Include="controllers\indexController.js" />
+    <Compile Include="data\database.js" />
+    <Compile Include="data\index.js" />
+    <Compile Include="data\seed.js" />
+    <Compile Include="gruntfile.js" />
+    <Compile Include="public\lib\bootstrap\dist\js\bootstrap.js" />
+    <Compile Include="public\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <Compile Include="public\lib\jquery\dist\jquery.js" />
+    <Compile Include="public\lib\jquery\dist\jquery.min.js" />
+    <Compile Include="public\lib\offlinejs-simulate-ui\offline-simulate-ui.min.js" />
+    <Compile Include="public\lib\offline\offline.min.js" />
     <Compile Include="server.js" />
+    <Content Include=".bowerrc" />
+    <Content Include="data\start-db.cmd" />
+    <Content Include="db.cmd" />
+    <Content Include="go.cmd" />
     <Content Include="package.json" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\lib\jquery\dist\jquery.min.map" />
+    <Content Include="public\lib\offline\img\tiny-image.gif" />
+    <Content Include="public\lib\offline\themes\offline-language-english-indicator.css" />
+    <Content Include="public\lib\offline\themes\offline-language-english.css" />
+    <Content Include="public\lib\offline\themes\offline-language-french-indicator.css" />
+    <Content Include="public\lib\offline\themes\offline-language-french.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-chrome-indicator.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-chrome.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-dark-indicator.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-dark.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-default-indicator.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-default.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-hubspot.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-slide-indicator.css" />
+    <Content Include="public\lib\offline\themes\offline-theme-slide.css" />
     <Content Include="README.md" />
+    <Content Include="views\index.vash" />
+    <Content Include="views\layout.vash" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="controllers\" />
+    <Folder Include="data\" />
+    <Folder Include="public\" />
+    <Folder Include="public\lib\" />
+    <Folder Include="public\lib\bootstrap\" />
+    <Folder Include="public\lib\bootstrap\dist\" />
+    <Folder Include="public\lib\bootstrap\dist\css\" />
+    <Folder Include="public\lib\bootstrap\dist\fonts\" />
+    <Folder Include="public\lib\bootstrap\dist\js\" />
+    <Folder Include="public\lib\jquery\" />
+    <Folder Include="public\lib\jquery\dist\" />
+    <Folder Include="public\lib\offlinejs-simulate-ui\" />
+    <Folder Include="public\lib\offline\" />
+    <Folder Include="public\lib\offline\img\" />
+    <Folder Include="public\lib\offline\themes\" />
+    <Folder Include="views\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
