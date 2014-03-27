@@ -1,0 +1,10 @@
+{
+  "name": "offlines_demo",
+  "version": "0.0.0",
+  "description": "offlines-demo",
+  "main": "server.js",
+  "author": {
+    "name": "cshoemaker",
+    "email": ""
+  }
+}
