@@ -1,1 +1,1 @@
-"C:\Users\cshoemaker\Documents\Program Files\mongodb\2.4.9\bin\mongod.exe" -dbpath "C:\node\offlines-demo\db" --rest
+mongod -dbpath "C:\node\offlines-demo\database\db" --rest

@@ -27,10 +27,27 @@
                     var destination = '/parks/' + name;
                 
                     if(error){
-                        console.log('Error while trying to create new park. Error: ' + error);
                         destination = '/';
                         request.flash('error', error);
                     }
+
+                    response.redirect(destination);
+                });
+            }
+        });
+
+        app.post('/delete', function(request, response){
+            var name = request.body.parkName;
+
+            if(name.length > 0){
+                data.deletePark(name, function(error){
+                    var destination = '/';
+                
+                    if(error){
+                        request.flash('error', error);
+                    }
+
+                    request.flash('error', 'deleted');
 
                     response.redirect(destination);
                 });

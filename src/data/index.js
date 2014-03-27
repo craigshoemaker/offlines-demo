@@ -18,20 +18,33 @@
         });
     };
 
-    //data.deletePark = function (name, next) {
-    //    _database.get(function(error, db){
-    //        if(error){
-    //            next(error, null);
-    //            return;
-    //        }
+    data.getParkByName = function (name, next) {
+        _database.get(function(error, db){
+            if(error){
+                next(error, null);
+                return;
+            }
 
-    //        db.parks.findOne({name: name}).remove(function(error, parks){
-    //            debugger;
-    //            next(error, parks);
-    //        });
+            db.parks.findOne({name:name}, function(error, park){
+                next(error, park);
+            });
 
-    //    });
-    //};
+        });
+    };
+
+    data.deletePark = function (name, next) {
+        _database.get(function(error, db){
+            if(error){
+                next(error, null);
+                return;
+            }
+
+            db.parks.remove({name: name}, function(error){
+                next(error);
+            });
+
+        });
+    };
 
     data.createPark = function(name, next){
         _database.get(function(error, db){

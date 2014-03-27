@@ -1,3 +1,1 @@
-cd data
-start start-db
-cd..
+mongod -dbpath "C:\node\offlines-demo\database\db" --rest

@@ -34,6 +34,11 @@
 					<input type="text" placeholder="park name" class="form-control" id="parkName" name="parkName" />
 					<input type="submit" value="Add" class="btn btn-default btn-primary btn-sm" />
 				</form>
+
+                <form id="new-park" method="post" action="/delete">
+                    <input type="text" placeholder="park name" class="form-control" id="parkName" name="parkName" />
+                    <input type="submit" value="Delete" class="btn btn-default btn-primary btn-sm" />
+                </form>
 			
 			</div>
 		</div>

@@ -1,5 +1,9 @@
 ﻿(function(database){
 
+    //How should I pass options to a node module?
+    //http://stackoverflow.com/questions/6366029/how-should-i-pass-options-to-a-node-module
+    // TODO: move config out of module to allow for injection
+
     var config = require('../config');
 
     var 

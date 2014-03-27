@@ -1,1 +1,1 @@
-jasmine-node specs --autotest --watch .
+jasmine-node spec --color --autotest --watch .
