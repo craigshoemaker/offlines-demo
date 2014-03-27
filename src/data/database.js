@@ -1,12 +1,7 @@
-﻿(function(database){
+﻿module.exports = function(config){
 
-    //How should I pass options to a node module?
-    //http://stackoverflow.com/questions/6366029/how-should-i-pass-options-to-a-node-module
-    // TODO: move config out of module to allow for injection
-
-    var config = require('../config');
-
-    var 
+    var
+        database = {},
         _mongodb = require('mongodb'),
         _mongoUrl = 'mongodb://'+ config.host +':' + 
                                   config.ports.database.api + '/' + 
@@ -31,4 +26,7 @@
             next(null, _db);
         }
     };
-}(module.exports));
+
+    return database;
+    
+};

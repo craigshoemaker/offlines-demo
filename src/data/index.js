@@ -1,85 +1,90 @@
-﻿(function (data) {
+﻿(function (db) {
+
+    var config = require('../config');
 
     var
         _seed = require('./seed'),
-        _database = require('./database');
+        _database = require('./database')(config);
 
-    data.getParks = function (next) {
-        _database.get(function(error, db){
-            if(error){
-                next(error, null);
-                return;
-            }
+    db.parks = {
+        
+        get: function (next) {
+            _database.get(function(error, db){
+                if(error){
+                    next(error, null);
+                    return;
+                }
 
-            db.parks.find().sort({name: 1}).toArray(function(error, parks){
-                next(error, parks);
+                db.parks.find().sort({name: 1}).toArray(function(error, parks){
+                    next(error, parks);
+                });
+
             });
+        },
 
-        });
-    };
+        getByName: function (name, next) {
+            _database.get(function(error, db){
+                if(error){
+                    next(error, null);
+                    return;
+                }
 
-    data.getParkByName = function (name, next) {
-        _database.get(function(error, db){
-            if(error){
-                next(error, null);
-                return;
-            }
+                db.parks.findOne({name:name}, function(error, park){
+                    next(error, park);
+                });
 
-            db.parks.findOne({name:name}, function(error, park){
-                next(error, park);
             });
+        },
 
-        });
-    };
+        'delete': function (name, next) {
+            _database.get(function(error, db){
+                if(error){
+                    next(error, null);
+                    return;
+                }
 
-    data.deletePark = function (name, next) {
-        _database.get(function(error, db){
-            if(error){
-                next(error, null);
-                return;
-            }
+                db.parks.remove({name: name}, function(error){
+                    next(error);
+                });
 
-            db.parks.remove({name: name}, function(error){
-                next(error);
             });
+        },
 
-        });
-    };
-
-    data.createPark = function(name, next){
-        _database.get(function(error, db){
-
-            if(error){
-                next(error, null);
-                return;
-            }
-
-            db.parks.find({name: name}).count(function(error, count){
-
-                var doInsert = !(error);
+        create: function(name, next){
+            _database.get(function(error, db){
 
                 if(error){
                     next(error, null);
+                    return;
                 }
 
-                if(doInsert && count != 0){
-                    next('That park already exists.', null);
-                    doInsert = false;
-                }
+                db.parks.find({name: name}).count(function(error, count){
 
-                if(doInsert){
+                    var doInsert = !(error);
 
-                    var park = {
-                        name: name,
-                        rides: []    
-                    };
+                    if(error){
+                        next(error, null);
+                    }
 
-                    db.parks.insert(park, function(error){
-                        next(error);
-                    });    
-                }
+                    if(doInsert && count != 0){
+                        next('That park already exists.', null);
+                        doInsert = false;
+                    }
+
+                    if(doInsert){
+
+                        var park = {
+                            name: name,
+                            rides: []    
+                        };
+
+                        db.parks.insert(park, function(error){
+                            next(error);
+                        });    
+                    }
+                });
             });
-        });
+        }
     };
 
     var seedDatabase = function () {

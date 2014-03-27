@@ -1,12 +1,12 @@
 ﻿(function(controller){
 
-    var data = require('../data');
+    var db = require('../data');
 
     controller.init = function(app){
 
         app.get('/', function(request, response){
 
-            data.getParks(function(error, parks){
+            db.parks.get(function(error, parks){
 
                 response.render('index', 
                     {
@@ -23,7 +23,7 @@
             var name = request.body.parkName;
 
             if(name.length > 0){
-                data.createPark(name, function(error){
+                db.parks.create(name, function(error){
                     var destination = '/parks/' + name;
                 
                     if(error){
@@ -40,7 +40,7 @@
             var name = request.body.parkName;
 
             if(name.length > 0){
-                data.deletePark(name, function(error){
+                db.parks.delete(name, function(error){
                     var destination = '/';
                 
                     if(error){
