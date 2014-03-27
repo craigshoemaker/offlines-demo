@@ -18,6 +18,21 @@
         });
     };
 
+    //data.deletePark = function (name, next) {
+    //    _database.get(function(error, db){
+    //        if(error){
+    //            next(error, null);
+    //            return;
+    //        }
+
+    //        db.parks.findOne({name: name}).remove(function(error, parks){
+    //            debugger;
+    //            next(error, parks);
+    //        });
+
+    //    });
+    //};
+
     data.createPark = function(name, next){
         _database.get(function(error, db){
 
