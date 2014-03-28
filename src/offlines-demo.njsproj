@@ -46,9 +46,7 @@
     <Compile Include="server.js" />
     <Compile Include="spec\data\index.spec.js" />
     <Content Include=".bowerrc" />
-    <Content Include="data\start-db.cmd" />
     <Content Include="db.cmd" />
-    <Content Include="db.txt" />
     <Content Include="go.cmd" />
     <Content Include="package.json" />
     <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.css" />

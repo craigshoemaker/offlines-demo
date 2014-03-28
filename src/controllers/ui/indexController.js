@@ -1,12 +1,17 @@
 ﻿(function(controller){
 
     var db = require('../../data');
+    var _ = require('lodash');
 
     controller.init = function(app){
 
         app.get('/', function(request, response){
 
             db.parks.get(function(error, parks){
+
+                //parks.forEach(function(park){
+                //    park.rides = _.sortBy(park.rides, 'name');    
+                //});
 
                 response.render('index', 
                     {

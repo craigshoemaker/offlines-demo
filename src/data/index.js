@@ -1,6 +1,7 @@
 ﻿(function (db) {
 
     var config = require('../config');
+    var _ = require('lodash');
 
     var
         _seed = require('./seed'),
@@ -14,6 +15,16 @@
                     next(error, null);
                 } else {
                     db.parks.find().sort({name: 1}).toArray(function(error, parks){
+
+                        // TODO: change how records are being written
+                        // into the database so after-the-fact sorting
+                        // isn't required.
+                        // http://stackoverflow.com/questions/19385786/mongodb-find-order-child-objects
+                        parks.forEach(function(park){
+                            park.rides = _.sortBy(park.rides, 'name');
+                        });
+                        //
+
                         next(error, parks);
                     });
                 }
@@ -28,9 +39,6 @@
                 }
 
                 db.parks.findOne({name:name}, function(error, park){
-                    park.rides.sort(function(a, b) {
-                        return a.name - b.name;
-                    });
                     next(error, park);
                 });
 
