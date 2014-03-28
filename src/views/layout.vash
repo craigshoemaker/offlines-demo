@@ -3,8 +3,7 @@
 	<head>
 		<title>@model.title - Offlines</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.min.css" />
+        <link href="/lib/bootswatch/bootstrap.min.css" rel="stylesheet" />
 		@html.block('head')
 	</head>
 	<body class="container">

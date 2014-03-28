@@ -1,5 +1,0 @@
-dbpath="C:\node\offlines-demo\database\db"
-
-logpath="C:\node\offlines-demo\database\log\database.log"
-
-verbose=vvv

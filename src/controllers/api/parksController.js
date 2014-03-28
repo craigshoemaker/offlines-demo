@@ -20,6 +20,11 @@
 
     controller.init = function(app){
 
+        //app.get('', function(request, response){});
+        //app.get('', function(request, response){});
+        //app.get('', function(request, response){});
+        //app.get('', function(request, response){});
+
         app.get('/api/parks', function(request, response){
             try {
                 db.parks.get(function (error, parks) {

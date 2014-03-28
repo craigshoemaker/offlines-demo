@@ -1,1 +1,0 @@
-mongod -dbpath "C:\node\offlines-demo\database\db" --rest
