@@ -30,8 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="config.js" />
+    <Compile Include="controllers\api\parksController.js" />
     <Compile Include="controllers\index.js" />
-    <Compile Include="controllers\indexController.js" />
+    <Compile Include="controllers\ui\indexController.js" />
     <Compile Include="data\database.js" />
     <Compile Include="data\index.js" />
     <Compile Include="data\seed.js" />
@@ -87,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="controllers\" />
+    <Folder Include="controllers\api\" />
+    <Folder Include="controllers\ui\" />
     <Folder Include="data\" />
     <Folder Include="public\lib\jasmine\" />
     <Folder Include="public\lib\jasmine\dist\" />

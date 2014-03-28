@@ -1,10 +1,10 @@
 ﻿(function(controller){
 
-    var db = require('../data');
+    var db = require('../../data');
 
     controller.init = function(app){
 
-        app.get('/', function(request, response){
+        app.get('/api/parks', function(request, response){
 
             db.parks.get(function(error, parks){
 
@@ -19,11 +19,11 @@
 
         });
 
-        app.post('/new', function(request, response){
+        app.post('/api/parks', function(request, response){
             var name = request.body.parkName;
 
             if(name.length > 0){
-                db.parks.create(name, function(error){
+                db.parks.insert(name, function(error){
                     var destination = '/parks/' + name;
                 
                     if(error){
@@ -36,7 +36,7 @@
             }
         });
 
-        app.post('/delete', function(request, response){
+        app.post('/api/parks/:parkName', function(request, response){
             var name = request.body.parkName;
 
             if(name.length > 0){

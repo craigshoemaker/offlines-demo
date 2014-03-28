@@ -30,6 +30,9 @@
                 }
 
                 db.parks.findOne({name:name}, function(error, park){
+                    park.rides.sort(function(a, b) {
+                        return a.name - b.name;
+                    });
                     next(error, park);
                 });
 
@@ -50,7 +53,7 @@
             });
         },
 
-        create: function(name, next){
+        insert: function(name, next){
             _database.get(function(error, db){
 
                 if(error){
@@ -87,40 +90,43 @@
         }
     };
 
-    var seedDatabase = function () {
-        _database.get(function (error, db) {
+    var util = {
+        seedDatabase: function () {
 
-            if(error){
-                console.log('Failed to seed database. Error: ' + error);
-                return;
-            }
+            _database.get(function (error, db) {
 
-            db.parks.count(function (error, count) {
-            
                 if(error){
-                    console.log('Error while attempting to get count from "parks" store. Error: ' + error);
+                    console.log('Failed to seed database. Error: ' + error);
                     return;
                 }
 
-                if(count === 0){
-                    console.log('Seeding database...');
+                db.parks.count(function (error, count) {
+            
+                    if(error){
+                        console.log('Error while attempting to get count from "parks" store. Error: ' + error);
+                        return;
+                    }
 
-                    _seed.parks.forEach(function(park){
-                        db.parks.insert(park, function(error){
-                            if(error){
-                                console.log('Error while trying to write ' + park.name + ' to document store. Error: ' + error);
-                            }
+                    if(count === 0){
+                        console.log('Seeding database...');
+
+                        _seed.parks.forEach(function(park){
+                            db.parks.insert(park, function(error){
+                                if(error){
+                                    console.log('Error while trying to write ' + park.name + ' to document store. Error: ' + error);
+                                }
+                            });
                         });
-                    });
 
-                    console.log('Seeding complete.');
-                } else {
-                    console.log('Database already seeded.'); 
-                }     
+                        console.log('Seeding complete.');
+                    } else {
+                        console.log('Database already seeded.'); 
+                    }     
+                });
             });
-        });
-    };
+        }
+    }
 
-    seedDatabase();
+    util.seedDatabase();
 
 }(module.exports));
