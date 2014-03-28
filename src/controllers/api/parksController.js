@@ -2,55 +2,74 @@
 
     var db = require('../../data');
 
+    var error = {
+
+        send: function (response, error) {
+            response.send(500, {
+                message: 'Error trying to access data.',
+                error: error
+            })
+        },
+
+        sendIfRequestHangs: function (response) {
+            var timeout = setTimeout(function () {
+                error.send(response);
+            }, 3000);
+        }
+    };
+
     controller.init = function(app){
 
         app.get('/api/parks', function(request, response){
-
-            db.parks.get(function(error, parks){
-
-                response.render('index', 
-                    {
-                        title:'Parks', 
-                        parks: parks,
-                        error: error,
-                        flashError: request.flash('error')
-                    });
-            });
-
-        });
-
-        app.post('/api/parks', function(request, response){
-            var name = request.body.parkName;
-
-            if(name.length > 0){
-                db.parks.insert(name, function(error){
-                    var destination = '/parks/' + name;
-                
-                    if(error){
-                        destination = '/';
-                        request.flash('error', error);
+            try {
+                db.parks.get(function (error, parks) {
+                    if (error) {
+                        error.send(response, error);
+                    } else {
+                        response.set('Content-Type', 'application/json');
+                        response.send(parks);
                     }
-
-                    response.redirect(destination);
                 });
+                error.sendIfRequestHangs(response);
+            }
+            catch (e) {
+                error.send(response);
             }
         });
 
         app.post('/api/parks/:parkName', function(request, response){
-            var name = request.body.parkName;
+            var name = request.params.parkName;
 
-            if(name.length > 0){
-                db.parks.delete(name, function(error){
-                    var destination = '/';
-                
-                    if(error){
-                        request.flash('error', error);
+            try {
+                db.parks.insert(name, function(error, park){
+                    if (error) {
+                        error.send(response, error);
+                    } else {
+                        response.send(200, park);
                     }
-
-                    request.flash('error', 'deleted');
-
-                    response.redirect(destination);
                 });
+                error.sendIfRequestHangs(response);
+            }
+            catch (e) {
+                error.send(response);
+            }
+        });
+
+        app.delete('/api/parks/:parkName', function(request, response){
+            var name = request.params.parkName;
+
+            try {
+                db.parks.delete(name, function(error){               
+                    if (error) {
+                        error.send(response, error);
+                    } else {
+                        response.send(200);
+                    }
+                });
+                error.sendIfRequestHangs(response);
+            }
+            catch (e) {
+                error.send(response);
             }
         });
     };

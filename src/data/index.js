@@ -12,13 +12,11 @@
             _database.get(function(error, db){
                 if(error){
                     next(error, null);
-                    return;
+                } else {
+                    db.parks.find().sort({name: 1}).toArray(function(error, parks){
+                        next(error, parks);
+                    });
                 }
-
-                db.parks.find().sort({name: 1}).toArray(function(error, parks){
-                    next(error, parks);
-                });
-
             });
         },
 
@@ -81,8 +79,8 @@
                             rides: []    
                         };
 
-                        db.parks.insert(park, function(error){
-                            next(error);
+                        db.parks.insert(park, function(error, newPark){
+                            next(error, newPark[0]);
                         });    
                     }
                 });
