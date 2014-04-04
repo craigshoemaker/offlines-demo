@@ -15,12 +15,6 @@
 			<div class="col-sm-6">
 				@model.parks.forEach(function(park){
 					<h2>@park.name</h2>
-
-					<ul>
-						@park.rides.forEach(function(ride){
-							<li>@ride.name</li>
-						})
-					</ul>
 				})
 			</div>
 			<div class="col-sm-3">
@@ -57,5 +51,4 @@
             });
         </script>
     })
-
 })

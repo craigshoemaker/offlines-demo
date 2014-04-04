@@ -4,9 +4,11 @@
 		<title>@model.title - Offlines</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="/lib/bootswatch/bootstrap.min.css" rel="stylesheet" />
+        <link href="/css/site.css" rel="stylesheet" />
 		@html.block('head')
 	</head>
 	<body class="container">
+        <img src="/img/offlines-logo.png" alt="Offlines: Record ride wait times." title="Offlines: Record ride wait times." class="img-responsive push-top-down-sm" />
 		<h1>@model.title</h1>
 		<article>
 			@html.block('body')

@@ -1,4 +1,5 @@
 ﻿var db = require('../../data');
+var _ = require('lodash');
 
 describe('/data/index.js: ', function(){
 
@@ -8,6 +9,14 @@ describe('/data/index.js: ', function(){
             db.parks.get(function(error, parks){
                 expect(error).toBeNull();
                 expect(parks.length).toBeGreaterThan(0);
+                done();
+            });
+        });
+
+        it('"getNames" returns only a list of park names', function(done){
+             db.parks.getNames(function(error, names){
+                expect(error).toBeNull();
+                expect(names.length).toBeGreaterThan(0);
                 done();
             });
         });

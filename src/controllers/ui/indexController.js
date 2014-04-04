@@ -7,11 +7,7 @@
 
         app.get('/', function(request, response){
 
-            db.parks.get(function(error, parks){
-
-                //parks.forEach(function(park){
-                //    park.rides = _.sortBy(park.rides, 'name');    
-                //});
+            db.parks.getNames(function(error, parks){
 
                 response.render('index', 
                     {

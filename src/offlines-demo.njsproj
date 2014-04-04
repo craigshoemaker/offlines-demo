@@ -19,7 +19,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <NodejsPort>1337</NodejsPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -49,6 +49,8 @@
     <Content Include="db.cmd" />
     <Content Include="go.cmd" />
     <Content Include="package.json" />
+    <Content Include="public\css\site.css" />
+    <Content Include="public\img\offlines-logo.png" />
     <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.css.map" />
     <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.min.css" />
@@ -90,9 +92,11 @@
     <Folder Include="controllers\api\" />
     <Folder Include="controllers\ui\" />
     <Folder Include="data\" />
+    <Folder Include="public\img\" />
     <Folder Include="public\lib\bootswatch\" />
     <Folder Include="public\lib\jasmine\" />
     <Folder Include="public\lib\jasmine\dist\" />
+    <Folder Include="public\css\" />
     <Folder Include="spec\" />
     <Folder Include="public\" />
     <Folder Include="public\lib\" />
