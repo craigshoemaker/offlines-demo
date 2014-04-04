@@ -2,19 +2,31 @@
 <html>
 	<head>
 		<title>@model.title - Offlines</title>
+        <link rel="shortcut icon" href="/img/fav.png" type="image/png">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="/lib/bootswatch/bootstrap.min.css" rel="stylesheet" />
+        <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/lib/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/lib/offline/themes/offline-theme-chrome.css" />
+        <link rel="stylesheet" href="/lib/offline/themes/offline-language-english.css" />
         <link href="/css/site.css" rel="stylesheet" />
 		@html.block('head')
 	</head>
 	<body class="container">
-        <img src="/img/offlines-logo.png" alt="Offlines: Record ride wait times." title="Offlines: Record ride wait times." class="img-responsive push-top-down-sm" />
+        <div class="push-top-down-sm">
+            <a href="/"><img src="/img/offlines-logo.png" alt="offlines: record ride wait times with ease" title="offlines: record ride wait times with ease" class="img-responsive" /></a> record attraction wait times with ease
+        </div>
+        @if(model.title){
 		<h1>@model.title</h1>
+        }
 		<article>
 			@html.block('body')
 		</article>
 		<script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/lib/angular/angular.js"></script>
+        <script src="/lib/angular-route/angular-route.js"></script>
 		<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/lib/offline/offline.min.js"></script>
+        <script src="/lib/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
 		@html.block('scripts')
 	</body>
 </html>

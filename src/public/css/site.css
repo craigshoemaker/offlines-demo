@@ -9,3 +9,11 @@
 .push-top-down-md {
     margin-top:2em;
 }
+
+.list > div {
+    padding:10px;
+}
+
+.list > div:nth-child(odd) {
+    background-color:#eee;
+}

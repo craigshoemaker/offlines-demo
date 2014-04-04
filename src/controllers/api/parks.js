@@ -20,11 +20,6 @@
 
     controller.init = function(app){
 
-        //app.get('', function(request, response){});
-        //app.get('', function(request, response){});
-        //app.get('', function(request, response){});
-        //app.get('', function(request, response){});
-
         app.get('/api/parks', function(request, response){
             try {
                 db.parks.get(function (error, parks) {
@@ -42,6 +37,26 @@
             }
         });
 
+        app.get('/api/parks/:parkName', function(request, response){
+            try {
+                var name = request.params.parkName;
+
+                db.parks.getByName(name, function (error, park) {
+                    if (error) {
+                        error.send(response, error);
+                    } else {
+                        response.set('Content-Type', 'application/json');
+                        response.send(park);
+                    }
+                });
+                error.sendIfRequestHangs(response);
+            }
+            catch (e) {
+                error.send(response);
+            }
+        });
+
+        // create (insert) new park
         app.post('/api/parks/:parkName', function(request, response){
             var name = request.params.parkName;
 
