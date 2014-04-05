@@ -1,3 +1,3 @@
 ﻿'use strict';
 
-angular.module('offlines', []);
+angular.module('offlines', ['ngResource']);

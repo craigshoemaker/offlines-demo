@@ -11,10 +11,12 @@
             })
         },
 
-        sendIfRequestHangs: function (response) {
-            var timeout = setTimeout(function () {
-                error.send(response);
-            }, 3000);
+        sendIfRequestHangs: function (response, send) {
+                var timeout = setTimeout(function () {
+                    if(send){
+                        error.send(response);
+                    }
+                }, 3000);
         }
     };
 
@@ -26,11 +28,11 @@
                     if (error) {
                         error.send(response, error);
                     } else {
+                        sendBlankResponse = false;
                         response.set('Content-Type', 'application/json');
                         response.send(parks);
                     }
                 });
-                error.sendIfRequestHangs(response);
             }
             catch (e) {
                 error.send(response);
@@ -45,11 +47,11 @@
                     if (error) {
                         error.send(response, error);
                     } else {
+                        sendBlankResponse = false;
                         response.set('Content-Type', 'application/json');
                         response.send(park);
                     }
                 });
-                error.sendIfRequestHangs(response);
             }
             catch (e) {
                 error.send(response);
@@ -68,7 +70,6 @@
                         response.send(200, park);
                     }
                 });
-                error.sendIfRequestHangs(response);
             }
             catch (e) {
                 error.send(response);
@@ -86,7 +87,6 @@
                         response.send(200);
                     }
                 });
-                error.sendIfRequestHangs(response);
             }
             catch (e) {
                 error.send(response);

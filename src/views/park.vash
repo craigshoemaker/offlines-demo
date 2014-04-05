@@ -5,11 +5,10 @@
         <section data-ng-app="offlines" data-ng-controller="parkController">
 
             <div class="list">
-                @model.park.rides.forEach(function(ride){
-                <div class="row">
+                <div class="row" data-ng-repeat="ride in park.rides">
                     <div class="col-xs-7">
-                        <span class="h4">@ride.name</span>
-                        <span class="badge">@ride.waitTimes[ride.waitTimes.length-1].duration</span>
+                        <span class="h4">{{ride.name}}</span>
+                        <span class="badge">{{ride.waitTimes[ride.waitTimes.length-1].duration}}</span>
                     </div>
                     <div class="col-xs-3">
                         <select class="form-control">
@@ -44,7 +43,6 @@
                     </div>
                     <div class="col-xs-1">mins</div>
                 </div>
-                })
             </div>
             <div class="row">
                 <div class="col-xs-12 push-top-down-sm">

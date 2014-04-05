@@ -2,16 +2,16 @@
 
 angular.module('offlines').controller('parkController', 
 
-                ['$scope','$http','$window', '$location',
-        function ($scope,  $http,  $window,   $location) {
+                ['$scope','$http','$window', '$location', '$resource', 
+        function ($scope,  $http,  $window,   $location,   $resource) {
 
             var loc = $location.absUrl();
             var parts = loc.split('/');
 
             var parkName = parts[parts.length-1];
 
-            $http.get('/api/parks/' + parkName).success(function(park){
-                debugger;
+            $scope.park = $http.get('/api/parks/' + parkName).success(function(park){
+                $scope.park = park;
             });
 
 

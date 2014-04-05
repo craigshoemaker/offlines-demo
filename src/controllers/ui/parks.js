@@ -23,17 +23,7 @@
         });
 
         app.get('/parks/:parkName', function(request, response){
-
-            var parkName = request.params.parkName;
-
-            db.parks.getByName(parkName, function(error, park) {
-               response.render('park', 
-                    {
-                        title:park.name,
-                        park: park,
-                        error: error
-                    }); 
-            });
+            response.render('park'); 
         });
     };
 
