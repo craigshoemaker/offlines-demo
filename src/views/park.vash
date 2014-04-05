@@ -2,20 +2,20 @@
 
 	@html.block('body', function(model){
 
-        <section data-ng-app="offlines" data-ng-controller="parkController">
+        <section data-ng-app="offlines" data-ng-controller="parkController" class="push-top-down-md">
 
             <div class="list">
                 <div class="row" data-ng-repeat="ride in park.rides">
-                    <div class="col-xs-7">
+                    <div class="col-xs-6 push-top-down-xxs">
                         <span class="h4">{{ride.name}}</span>
                         <span class="badge">{{ride.waitTimes[ride.waitTimes.length-1].duration}}</span>
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-4">
                         <select class="form-control" data-ng-model="ride.newDuration" data-ng-options="o.duration for o in durationOptions">
                             <option value=""> - - - </option>
                         </select>
                     </div>
-                    <div class="col-xs-1">mins</div>
+                    <div class="col-xs-1 push-top-down-xxs">mins</div>
                 </div>
             </div>
             <div class="row">

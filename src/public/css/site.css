@@ -1,4 +1,8 @@
-﻿.push-top-down-xs {
+﻿.push-top-down-xxs {
+    margin-top:.5em;
+}
+
+.push-top-down-xs {
     margin-top:1em;
 }
 
@@ -8,6 +12,22 @@
 
 .push-top-down-md {
     margin-top:2em;
+}
+
+.push-bottom-up-xxs {
+    margin-bottom:.5em;
+}
+
+.push-bottom-up-xs {
+    margin-bottom:1em;
+}
+
+.push-bottom-up-sm {
+    margin-bottom:1.5em;
+}
+
+.push-bottom-up-md {
+    margin-bottom:2em;
 }
 
 .list > div {
