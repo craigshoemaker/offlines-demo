@@ -6,9 +6,9 @@
 			<p class="alert alert-danger">@model.error</p>
 		}
 
-        <div class="list">
+        <div class="list push-top-down-md">
 		    @model.parks.forEach(function(park){
-                    <a href="/parks/@park.nameEncoded"><div class="h3">@park.name</div></a>
+                <div><a href="/parks/@park.nameEncoded"><span class="h3">@park.name</span></a></div>
 		    })
         </div>
     })
