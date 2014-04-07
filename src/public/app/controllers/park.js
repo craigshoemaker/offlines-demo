@@ -1,9 +1,57 @@
 ﻿'use strict';
 
-angular.module('offlines').controller('parkController', 
+offlinesApp.factory('waitTimesService', ['$http', '$window', function($http, $window){
 
-                ['$scope','$http','$window', '$location', '$resource', 
-        function ($scope,  $http,  $window,   $location,   $resource) {
+    var offline = $window.Offline;
+    var isOffline = false;
+
+    offline.on('confirmed-down', function () {
+        isOffline = true;
+    });
+
+    offline.on('confirmed-up', function () {
+        isOffline = false;
+    });
+
+    var svc = {
+        save: function(park, success){
+            park.rides.forEach(function(ride){
+                if(ride.newDuration){
+
+                    var url = '/api/parks/' + 
+                              park.name + '/' + 
+                              encodeURIComponent(ride.name) + '/' + 
+                              ride.newDuration.duration;
+
+                    $http.post(url, {}).success(function(waitTime){
+                        success(ride, waitTime);
+                    });
+                }
+            })
+        }
+    };
+
+    return svc;
+}]);
+
+offlinesApp.factory('parksService', ['$http', function($http){
+
+    var svc = {
+        get: function(parkName, success){
+            return $http.get('/api/parks/' + parkName).success(function(park){
+                success(park);
+            });
+        }    
+    };
+
+    return svc;
+
+}]);
+
+offlinesApp.controller('parkController', 
+
+                ['$scope','$http','$window', '$location', '$resource', 'waitTimesService', 'parksService', 
+        function ($scope,  $http,  $window,   $location,   $resource,   waitTimesService,   parksService) {
 
             var loc = $location.absUrl();
             var parts = loc.split('/');
@@ -22,7 +70,7 @@ angular.module('offlines').controller('parkController',
 
             $scope.durationOptions = buildDurationOptions();
 
-            $scope.park = $http.get('/api/parks/' + parkName).success(function(park){
+            $scope.park = parksService.get(parkName, function(park){
                 $scope.park = park;
             });
 
@@ -31,13 +79,8 @@ angular.module('offlines').controller('parkController',
             };
 
             $scope.save = function(){
-                $scope.park.rides.forEach(function(ride){
-                    if(ride.newDuration){
-                        var url = '/api/parks/' + parkName + '/' + encodeURIComponent(ride.name) + '/' + ride.newDuration.duration;
-                        $http.post(url, {}).success(function(waitTime){
-                            ride.waitTimes.push(waitTime);
-                        });
-                    }
+                waitTimesService.save($scope.park, function(ride, waitTime){
+                    ride.waitTimes.push(waitTime);
                 });
             };
         }]);
