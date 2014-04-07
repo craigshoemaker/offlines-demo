@@ -13,11 +13,9 @@ angular.module('offlines').controller('parkController',
             var buildDurationOptions = function (){
                 var arr = [];
 
-                for(var i=0;i<121;i+=5){
+                for(var i=0;i<181;i+=5){
                     arr.push({ duration: i});   
                 }
-
-                arr.push({duration: '120+'});
 
                 return arr;
             };
@@ -34,10 +32,12 @@ angular.module('offlines').controller('parkController',
 
             $scope.save = function(){
                 $scope.park.rides.forEach(function(ride){
-                    var url = '/api/parks/' + parkName + '/' + encodeURIComponent(ride.name) + '/' + ride.newDuration.duration;
-                    $http.post(url, {}).success(function(waitTime){
-                        ride.waitTimes.push(waitTime);
-                    });
+                    if(ride.newDuration){
+                        var url = '/api/parks/' + parkName + '/' + encodeURIComponent(ride.name) + '/' + ride.newDuration.duration;
+                        $http.post(url, {}).success(function(waitTime){
+                            ride.waitTimes.push(waitTime);
+                        });
+                    }
                 });
             };
         }]);
