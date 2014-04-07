@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-offlinesApp.factory('waitTimesService', ['$http', '$window', function($http, $window){
+offlinesApp.factory('parksService', ['$http', '$window', function($http, $window){
 
     var offline = $window.Offline;
     var isOffline = false;
@@ -14,6 +14,12 @@ offlinesApp.factory('waitTimesService', ['$http', '$window', function($http, $wi
     });
 
     var svc = {
+        get: function(parkName, success){
+            return $http.get('/api/parks/' + parkName).success(function(park){
+                success(park);
+            });
+        },
+        
         save: function(park, success){
             park.rides.forEach(function(ride){
                 if(ride.newDuration){
@@ -28,20 +34,7 @@ offlinesApp.factory('waitTimesService', ['$http', '$window', function($http, $wi
                     });
                 }
             })
-        }
-    };
-
-    return svc;
-}]);
-
-offlinesApp.factory('parksService', ['$http', function($http){
-
-    var svc = {
-        get: function(parkName, success){
-            return $http.get('/api/parks/' + parkName).success(function(park){
-                success(park);
-            });
-        }    
+        }   
     };
 
     return svc;
@@ -50,8 +43,8 @@ offlinesApp.factory('parksService', ['$http', function($http){
 
 offlinesApp.controller('parkController', 
 
-                ['$scope','$http','$window', '$location', '$resource', 'waitTimesService', 'parksService', 
-        function ($scope,  $http,  $window,   $location,   $resource,   waitTimesService,   parksService) {
+                ['$scope','$http','$window', '$location', '$resource', 'parksService', 
+        function ($scope,  $http,  $window,   $location,   $resource,   parksService) {
 
             var loc = $location.absUrl();
             var parts = loc.split('/');
@@ -79,7 +72,7 @@ offlinesApp.controller('parkController',
             };
 
             $scope.save = function(){
-                waitTimesService.save($scope.park, function(ride, waitTime){
+                parksService.save($scope.park, function(ride, waitTime){
                     ride.waitTimes.push(waitTime);
                 });
             };
