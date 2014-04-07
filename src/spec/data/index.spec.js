@@ -66,4 +66,16 @@ describe('/data/index.js: ', function(){
             }); 
         });
     });
+
+    describe('db.rides', function(done){
+        it('"addWaitTime" inserts a new wait time array item into the given ride\'s list of wait times', function(done){
+            db.rides.addWaitTime('Animal Kingdom', 'DINOSAUR', 120, function(error, response){
+                expect(error).toBeNull();
+                expect(response.success).toBe(true);
+                done();
+            });
+            done();
+        });
+
+    }); 
 });

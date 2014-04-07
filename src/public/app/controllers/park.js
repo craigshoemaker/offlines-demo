@@ -33,7 +33,11 @@ angular.module('offlines').controller('parkController',
             };
 
             $scope.save = function(){
-                $window.alert('save wait times');
+                $scope.park.rides.forEach(function(ride){
+                    var url = '/api/parks/' + parkName + '/' + encodeURIComponent(ride.name) + '/' + ride.newDuration.duration;
+                    $http.post(url, {}).success(function(waitTime){
+                        ride.waitTimes.push(waitTime);
+                    });
+                });
             };
-
         }]);

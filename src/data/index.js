@@ -15,16 +15,6 @@
                     next(error, null);
                 } else {
                     db.parks.find().sort({name: 1}).toArray(function(error, parks){
-
-                        // TODO: change how records are being written
-                        // into the database so after-the-fact sorting
-                        // isn't required.
-                        // http://stackoverflow.com/questions/19385786/mongodb-find-order-child-objects
-                        parks.forEach(function(park){
-                            park.rides = _.sortBy(park.rides, 'name');
-                        });
-                        //
-
                         next(error, parks);
                     });
                 }
@@ -106,6 +96,24 @@
                 });
             });
         }
+    };
+
+    db.rides = {
+        addWaitTime: function(parkName, rideName, newDuration, next) {
+            _database.get(function(error, db){
+                if(error){
+                    next(error, null);
+                } else {
+                    var waitTime = {dateTime: new Date(), duration: newDuration};
+                    db.parks.update(
+                        {name: parkName, 'rides.name': rideName},
+                        {$push: {'rides.$.waitTimes': waitTime}}, 
+                        function(error, response){
+                           next(error, waitTime); 
+                        });
+                }
+            });
+        }    
     };
 
     var util = {

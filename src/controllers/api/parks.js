@@ -9,14 +9,6 @@
                 message: 'Error trying to access data.',
                 error: error
             })
-        },
-
-        sendIfRequestHangs: function (response, send) {
-                var timeout = setTimeout(function () {
-                    if(send){
-                        error.send(response);
-                    }
-                }, 3000);
         }
     };
 
@@ -74,6 +66,21 @@
             catch (e) {
                 error.send(response);
             }
+        });
+
+        app.post('/api/parks/:parkName/:rideName/:duration', function(request, response){
+            var parkName = request.params.parkName;
+            var rideName = request.params.rideName;
+            var duration = parseInt(request.params.duration);
+
+            if(!isNaN(duration)){
+                db.rides.addWaitTime(parkName, rideName, duration, function(error, waitTime){
+                    response.send(waitTime);
+                });  
+            } else {
+                error.send(response);
+            }
+
         });
 
         app.delete('/api/parks/:parkName', function(request, response){
