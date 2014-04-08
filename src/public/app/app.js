@@ -1,3 +1,3 @@
 ﻿'use strict';
 
-var offlinesApp = angular.module('offlines', ['ngResource']);
+var offlinesApp = angular.module('offlinesApp', ['ngResource']);

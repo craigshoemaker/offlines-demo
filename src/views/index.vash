@@ -1,15 +1,15 @@
 ﻿@html.extend('layout', function(model){
 
 	@html.block('body', function(model){
-	
-		@if(model.error){
-			<p class="alert alert-danger">@model.error</p>
-		}
 
-        <div class="list push-top-down-md">
-		    @model.parks.forEach(function(park){
-                <div><a href="/parks/@park.nameEncoded"><span class="h3">@park.name</span></a></div>
-		    })
-        </div>
+        <section data-ng-app="offlinesApp" data-ng-controller="indexController">
+            <div class="list push-top-down-md" ng-repeat="park in parks">
+                <div><a href="/parks/{{park.name}}"><span class="h3">{{park.name}}</span></a></div>
+            </div>
+        </section>
+    })
+
+    @html.block('scripts', function(model){
+        <script src="/app/controllers/indexController.js"></script>
     })
 })

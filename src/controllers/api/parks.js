@@ -16,7 +16,7 @@
 
         app.get('/api/parks', function(request, response){
             try {
-                db.parks.get(function (error, parks) {
+                db.parks.getParksAndRides(function (error, parks) {
                     if (error) {
                         error.send(response, error);
                     } else {

@@ -21,6 +21,18 @@
             });
         },
 
+        getParksAndRides: function (next) {
+            _database.get(function(error, db){
+                if(error){
+                    next(error, null);
+                } else {
+                    db.parks.find({}, {name:1, 'rides.name':1, _id:1 }).sort({name: 1}).toArray(function(error, parks){
+                        next(error, parks);
+                    });
+                }
+            });
+        },
+
         getNames: function(next){
             _database.get(function(error, db){
                 if(error){

@@ -5,6 +5,18 @@ describe('/data/index.js: ', function(){
 
     describe('db.parks', function(){
 
+        it('"getParksAndRides" gets the parks and rides, but not the wait times', function(done){
+            db.parks.getParksAndRides(function(error, parks){
+                expect(error).toBeNull();
+                expect(parks).toBeDefined();
+                expect(parks.length).toBeGreaterThan(0);
+                expect(parks[0]._id).toBeDefined();
+                expect(parks[0].rides.length).toBeGreaterThan(0);
+                expect(parks[0].rides[0].waitTimes).toBeUndefined();
+                done();
+            });
+        });
+
         it('"get" will return all parks (without projections)', function(done){
             db.parks.get(function(error, parks){
                 expect(error).toBeNull();
