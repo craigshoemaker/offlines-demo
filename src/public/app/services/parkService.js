@@ -82,7 +82,7 @@ offlinesApp.factory('parkService',
                                   ride.newDuration.duration;
 
                         $http.post(url, {}).success(function(waitTime){
-                            deferred.resolve();
+                            deferred.resolve(waitTime);
                         }).error(function(error){
                             deferred.reject(new Error(error));
                         });

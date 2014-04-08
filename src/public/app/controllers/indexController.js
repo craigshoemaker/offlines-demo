@@ -16,4 +16,5 @@ offlinesApp.controller('indexController',
                 $scope.error = error;
                 $scope.$apply();
             });
+
     }]);

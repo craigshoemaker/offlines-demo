@@ -21,12 +21,13 @@ offlinesApp.controller('parkController',
         };
 
         var reportError = function(error){
-            debugger;
             $scope.error = error;
             $scope.$apply();
         };
 
         $scope.error = null;
+
+        $scope.showConfirm = false;
 
         $scope.durationOptions = buildDurationOptions();
 
@@ -43,8 +44,15 @@ offlinesApp.controller('parkController',
 
         $scope.save = function(){
             parkService.addWaitTime($scope.park).done(
-                function(){
 
+                function(waitTime){
+
+                    $scope.park.rides.forEach(function(ride){
+                        delete ride.newDuration;
+                    });
+
+                    $scope.showConfirm = true;
+                    $scope.$apply();
                 },
                 reportError);
         };
