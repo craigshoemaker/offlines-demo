@@ -1,79 +1,85 @@
 ﻿'use strict';
 
-offlinesApp.factory('parksService', ['$http', '$window', function($http, $window){
+offlinesApp.factory('parkService', 
+    
+            ['$http', '$window',
+    function ($http,   $window){
 
-    var offline = $window.Offline;
-    var isOffline = false;
+        var offline = $window.Offline;
+        var isOffline = false;
 
-    offline.on('confirmed-down', function () {
-        isOffline = true;
-    });
+        offline.on('confirmed-down', function () {
+            isOffline = true;
+        });
 
-    offline.on('confirmed-up', function () {
-        isOffline = false;
-    });
+        offline.on('confirmed-up', function () {
+            isOffline = false;
+        });
 
-    var svc = {
-        get: function(parkName, success){
-            return $http.get('/api/parks/' + parkName).success(function(park){
-                success(park);
-            });
-        },
+        var svc = {
+            get: function(parkName){
+                return $http.get('/api/parks/' + parkName);
+            },
         
-        save: function(park, success){
-            park.rides.forEach(function(ride){
-                if(ride.newDuration){
+            addWaitTime: function(park){
+                debugger;
+                var deferred = Q.defer();
 
-                    var url = '/api/parks/' + 
-                              park.name + '/' + 
-                              encodeURIComponent(ride.name) + '/' + 
-                              ride.newDuration.duration;
+                park.rides.forEach(function(ride){
+                    if(ride.newDuration){
 
-                    $http.post(url, {}).success(function(waitTime){
-                        success(ride, waitTime);
-                    });
-                }
-            })
-        }   
-    };
+                        var url = '/api/parks/' + 
+                                  park.name + '/' + 
+                                  encodeURIComponent(ride.name) + '/' + 
+                                  ride.newDuration.duration;
 
-    return svc;
+                        $http.post(url, {}).success(function(waitTime){
+                            deferred.resolve();
+                        });
+                    }
+                })
 
-}]);
+                return deferred.promise;
+            }   
+        };
+
+        return svc;
+
+    }]);
 
 offlinesApp.controller('parkController', 
 
-                ['$scope','$http','$window', '$location', '$resource', 'parksService', 
-        function ($scope,  $http,  $window,   $location,   $resource,   parksService) {
+            ['$scope','$http','$window', '$location', '$resource', 'parkService', 
+    function ($scope,  $http,  $window,   $location,   $resource,   parkService) {
 
-            var loc = $location.absUrl();
-            var parts = loc.split('/');
+        var loc = $location.absUrl();
+        var parts = loc.split('/');
 
-            var parkName = parts[parts.length-1];
+        var parkName = parts[parts.length-1];
 
-            var buildDurationOptions = function (){
-                var arr = [];
+        var buildDurationOptions = function (){
+            var arr = [];
 
-                for(var i=0;i<181;i+=5){
-                    arr.push({ duration: i});   
-                }
+            for(var i=0;i<181;i+=5){
+                arr.push({ duration: i});   
+            }
 
-                return arr;
-            };
+            return arr;
+        };
 
-            $scope.durationOptions = buildDurationOptions();
+        $scope.durationOptions = buildDurationOptions();
 
-            $scope.park = parksService.get(parkName, function(park){
-                $scope.park = park;
+        $scope.park = parkService.get(parkName).success(function(park){
+            $scope.park = park;
+        });
+
+        $scope.back = function(){
+            $window.history.back();
+        };
+
+        $scope.save = function(){
+            parkService.addWaitTime($scope.park).done(function(){
+
             });
-
-            $scope.back = function(){
-                $window.history.back();
-            };
-
-            $scope.save = function(){
-                parksService.save($scope.park, function(ride, waitTime){
-                    ride.waitTimes.push(waitTime);
-                });
-            };
-        }]);
+        };
+    }]);
