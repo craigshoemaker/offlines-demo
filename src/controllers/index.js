@@ -1,12 +1,12 @@
 ﻿(function(controllers){
 
     var ui = {
-        index: require('./ui/index.js'),
-        parks: require('./ui/parks.js')
+        index: require('./ui/indexController.js'),
+        parks: require('./ui/parksController.js')
     };
 
     var api = {
-        parks: require('./api/parks.js')
+        parks: require('./api/parksController.js')
     };
 
     controllers.init = function(app){

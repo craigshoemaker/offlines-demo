@@ -26,8 +26,6 @@ offlinesApp.factory('parkService',
 
                 var deferred = Q.defer();
 
-                debugger;
-
                 if(svc.parks != null){
 
                     deferred.resolve(svc.parks);    
@@ -57,11 +55,8 @@ offlinesApp.factory('parkService',
 
                 var parkName = decodeURIComponent(name);
 
-                debugger;
-
                 svc.getParksAndRides().done(
                     function(parks){
-                        debugger;
                         parks.forEach(function(park){
                             if(park.name === parkName){
                                 deferred.resolve(park);
@@ -69,7 +64,6 @@ offlinesApp.factory('parkService',
                         });
                     }, 
                     function(error){
-                        debugger;
                         deferred.reject(new Error(error));
                     });
 
