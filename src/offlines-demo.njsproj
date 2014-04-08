@@ -38,10 +38,10 @@
     <Compile Include="public\app\controllers\indexController.js" />
     <Compile Include="public\app\controllers\parkController.js" />
     <Compile Include="config.js" />
-    <Compile Include="controllers\api\parks.js" />
+    <Compile Include="controllers\api\parksController.js" />
     <Compile Include="controllers\index.js" />
-    <Compile Include="controllers\ui\index.js" />
-    <Compile Include="controllers\ui\parks.js" />
+    <Compile Include="controllers\ui\indexController.js" />
+    <Compile Include="controllers\ui\parksController.js" />
     <Compile Include="data\database.js" />
     <Compile Include="data\index.js" />
     <Compile Include="data\seed.js" />

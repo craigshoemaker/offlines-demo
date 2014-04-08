@@ -93,6 +93,10 @@ offlinesApp.factory('parkService',
             }   
         };
 
-        return svc;
+        return {
+            getParksAndRides: svc.getParksAndRides,
+            getParkByName: svc.getParkByName,
+            addWaitTime: svc.addWaitTime    
+        };
 
     }]);

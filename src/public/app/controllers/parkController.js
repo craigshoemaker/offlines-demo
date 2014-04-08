@@ -20,24 +20,32 @@ offlinesApp.controller('parkController',
             return arr;
         };
 
+        var reportError = function(error){
+            debugger;
+            $scope.error = error;
+            $scope.$apply();
+        };
+
+        $scope.error = null;
+
         $scope.durationOptions = buildDurationOptions();
 
-        $scope.park = parkService.getParkByName(parkName).done(
+        parkService.getParkByName(parkName).done(
             function(park){
                 $scope.park = park;
                 $scope.$apply();
-            }, 
-            function(error){
-                $scope.error = error;
-            });
+            },
+            reportError);
 
         $scope.back = function(){
             $window.history.back();
         };
 
         $scope.save = function(){
-            parkService.addWaitTime($scope.park).done(function(){
+            parkService.addWaitTime($scope.park).done(
+                function(){
 
-            });
+                },
+                reportError);
         };
     }]);

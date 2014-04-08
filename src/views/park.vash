@@ -4,13 +4,19 @@
 
         <section data-ng-app="offlinesApp" data-ng-controller="parkController" class="push-top-down-md">
 
+            <div class="alert alert-danger" data-ng-hide="error === null">
+                <span data-ng-bind="error.message"></span>
+            </div>
+
             <div class="list">
                 <div class="row" data-ng-repeat="ride in park.rides">
                     <div class="col-xs-6 push-top-down-xxs">
                         <span class="h4">{{ride.name}}</span>
                     </div>
                     <div class="col-xs-4">
-                        <select class="form-control" data-ng-model="ride.newDuration" data-ng-options="o.duration for o in durationOptions">
+                        <select class="form-control" 
+                                data-ng-model="ride.newDuration"
+                                data-ng-options="o.duration for o in durationOptions">
                             <option value=""> - - - </option>
                         </select>
                     </div>
@@ -19,8 +25,14 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 push-top-down-sm">
-                    <button type="button" data-ng-click="save()" class="btn btn-default btn-primary form-control"><i class="fa fa-floppy-o"></i> Save</button>
-                    <button type="button" data-ng-click="back()" class="btn btn-default form-control push-top-down-xs"><i class="fa fa-reply"></i> Back</button>
+                    <button type="button" 
+                            data-ng-click="save()" 
+                            data-ng-hide="error != null" 
+                            class="btn btn-default btn-primary form-control"><i class="fa fa-floppy-o"></i> Save</button>
+
+                    <button type="button" 
+                            data-ng-click="back()" 
+                            class="btn btn-default form-control push-top-down-xs"><i class="fa fa-reply"></i> Back</button>
                 </div>
             </div>
 
