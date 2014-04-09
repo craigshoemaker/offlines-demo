@@ -1,20 +1,143 @@
 ﻿'use strict';
 
-offlinesApp.factory('parkService', 
+offlinesApp.factory('localPersistenceStrategy', 
+           ['$window', '_', 
+    function($window,   _){
+
+        var svc = {
+            key: function(parkName){
+                return 'offlines.park.' + parkName;    
+            },
+
+            addWaitTime: function(park){
+
+                var deferred = Q.defer();
+
+                try {
+                    var currentPark = _.clone(park, true);
+
+                    var addNewDurationIntoWaitTimesArray = function(currentPark){
+                        currentPark.rides.forEach(function(ride){
+                            if(ride.newDuration){
+
+                                if(!ride.waitTimes){
+                                    ride.waitTimes = [];
+                                }
+
+                                ride.waitTimes.push({dateTime: new Date(), duration: ride.newDuration});
+
+                                delete ride.newDuration;
+                            }
+                        });
+                        return currentPark;
+                    };
+                    
+                    var extractExistingDataFromLocalStorage = function(){
+
+                        var localData = $window.localStorage[svc.key(currentPark.name)];
+
+                        if(localData){
+                            localData = JSON.parse(localData);
+                            return localData;
+                        }
+
+                        return null;
+                    };
+
+                    var mergeNewAndLocalData = function(currentPark, localPark){
+
+                        if(localPark){
+                            localPark.rides.forEach(function(ride, i){
+                                ride.waitTimes = ride.waitTimes.concat(currentPark.rides[i].waitTimes);
+                            });
+                            return localPark;
+                        } else {
+                            return currentPark;    
+                        }
+                    };
+
+                    currentPark = addNewDurationIntoWaitTimesArray(currentPark);  
+                    var localPark = extractExistingDataFromLocalStorage();
+
+                    var dataToPersist = mergeNewAndLocalData(currentPark, localPark);
+
+                    $window.localStorage[svc.key] = JSON.stringify(dataToPersist);
+
+                    deferred.resolve();
+
+                } catch(e){
+                    deferred.reject(e);    
+                }
+
+                return deferred.promise;
+            }
+        };
+
+        return {
+            addWaitTime: svc.addWaitTime
+        };
     
-            ['$http', '$window',
-    function ($http,   $window){
+    }]);
 
-        var offline = $window.Offline;
-        var isOffline = false;
+offlinesApp.factory('remotePersistenceStrategy', 
+           ['$http', 
+    function($http){
 
-        offline.on('confirmed-down', function () {
-            isOffline = true;
+    var svc = {
+        addWaitTime: function(park){
+            var deferred = Q.defer();
+
+            park.rides.forEach(function(ride){
+                if(ride.newDuration){
+
+                    var url = '/api/parks/' + 
+                                park.name + '/' + 
+                                encodeURIComponent(ride.name) + '/' + 
+                                ride.newDuration.duration;
+
+                    $http.post(url, {}).success(function(waitTime){
+                        deferred.resolve(waitTime);
+                    }).error(function(error){
+                        deferred.reject(error);
+                    });
+                }
+            })
+
+            return deferred.promise;
+        }    
+    };
+
+    return {
+        addWaitTime: svc.addWaitTime
+    };
+    
+}]);
+
+offlinesApp.service('persistenceService', 
+           ['$window','remotePersistenceStrategy', 'localPersistenceStrategy', 
+    function($window,  remotePersistenceStrategy,   localPersistenceStrategy){
+
+        var persistenceStrategy = localPersistenceStrategy;
+
+        $window.Offline.on('confirmed-down', function () {
+            persistenceStrategy = localPersistenceStrategy;
         });
 
-        offline.on('confirmed-up', function () {
-            isOffline = false;
+        $window.Offline.on('confirmed-up', function () {
+            persistenceStrategy = remotePersistenceStrategy;
         });
+
+        $window.Offline.check();
+
+        this.addWaitTime = function(park){
+            return persistenceStrategy.addWaitTime(park);
+        };
+    
+    }]);
+
+offlinesApp.factory('parkService', 
+            ['$http', '$window', 'persistenceService',
+    function ($http,   $window,   persistenceService){
 
         var svc = {
 
@@ -37,7 +160,7 @@ offlinesApp.factory('parkService',
                         svc.parks = parks;  
                         deferred.resolve(svc.parks);  
                     }).error(function(error){
-                        deferred.reject(new Error(error));
+                        deferred.reject(error);
                     });
 
                 } else {
@@ -64,32 +187,14 @@ offlinesApp.factory('parkService',
                         });
                     }, 
                     function(error){
-                        deferred.reject(new Error(error));
+                        deferred.reject(error);
                     });
 
                 return deferred.promise;
             },
         
             addWaitTime: function(park){
-                var deferred = Q.defer();
-
-                park.rides.forEach(function(ride){
-                    if(ride.newDuration){
-
-                        var url = '/api/parks/' + 
-                                  park.name + '/' + 
-                                  encodeURIComponent(ride.name) + '/' + 
-                                  ride.newDuration.duration;
-
-                        $http.post(url, {}).success(function(waitTime){
-                            deferred.resolve(waitTime);
-                        }).error(function(error){
-                            deferred.reject(new Error(error));
-                        });
-                    }
-                })
-
-                return deferred.promise;
+                return persistenceService.addWaitTime(park);
             }   
         };
 

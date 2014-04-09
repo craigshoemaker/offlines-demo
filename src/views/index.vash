@@ -8,8 +8,10 @@
                 <span data-ng-bind="error.message"></span>
             </div>
 
-            <div class="list" ng-repeat="park in parks">
-                <div><a href="/parks/{{park.name}}"><span class="h3">{{park.name}}</span></a></div>
+            <div class ="list">
+                <div ng-repeat="park in parks">
+                    <div><a href="/parks/{{park.name}}"><span class="h3">{{park.name}}</span></a></div>
+                </div>
             </div>
         </section>
     })
