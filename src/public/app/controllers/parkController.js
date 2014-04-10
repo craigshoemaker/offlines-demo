@@ -2,8 +2,8 @@
 
 offlinesApp.controller('parkController', 
 
-            ['$scope','$window', '$location', 'parkService', 
-    function ($scope,  $window,   $location,   parkService) {
+            ['$scope','$window', '$location', '$timeout', 'parkService', 
+    function ($scope,  $window,   $location,   $timeout,   parkService) {
 
         var loc = $location.absUrl();
         var parts = loc.split('/');
@@ -47,11 +47,22 @@ offlinesApp.controller('parkController',
 
                 function(waitTime){
 
+                    $scope.showConfirm = false;
+                    $scope.doFade = false;
+
+                    // clean up model to clear out 
+                    // drop down bindings on the UI
                     $scope.park.rides.forEach(function(ride){
                         delete ride.newDuration;
                     });
 
                     $scope.showConfirm = true;
+
+                    $timeout(function(){
+                        $scope.doFade = true;    
+                    }, 2500);
+
+                    
                     $scope.$apply();
                 },
                 reportError);

@@ -31,34 +31,34 @@
                 {
                     name: 'DINOSAUR',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
                 {
                     name: 'Expedition Everest',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
                 {
                     name: 'Kali River Rapids',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 }
             ]
@@ -69,34 +69,34 @@
                 {
                     name: 'Barn Stormer',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
                 {
                     name: 'Haunted Mansion',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
                 {
                     name: 'Space Mountain',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
             ]   
@@ -107,35 +107,35 @@
                 {
                     name: 'Maelstrom',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
 
                 },
                 {
                     name: 'Mission: SPACE',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
                 {
                     name: 'Test Track',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
             ]    
@@ -146,34 +146,34 @@
                 {
                     name: 'Great Movie Ride',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
                 {
                     name: 'Rock \'n\' Roller Coaster',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
                 {
                     name: 'Star Tours',
                     waitTimes:[
-                        { dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        { dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
             ]    

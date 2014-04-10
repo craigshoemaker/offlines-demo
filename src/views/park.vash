@@ -35,7 +35,9 @@
                             class="btn btn-default form-control push-top-down-xs"><i class="fa fa-reply"></i> Back</button>
                 </div>
             </div>
-            <div class="alert alert-info push-top-down-sm" data-ng-show="showConfirm"><strong>Wait times saved</strong></div>
+            <div class="alert alert-info push-top-down-sm" 
+                 data-ng-show="showConfirm"
+                 data-ng-class="{fade:doFade}"><strong>Wait times saved</strong></div>
 
         </section>
     })

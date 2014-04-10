@@ -1,8 +1,21 @@
 ﻿'use strict';
 
+offlinesApp.factory('Enums', [function(){
+
+    return {
+        localStorageKeys: {
+            parksAndRides: 'offlines.parks.rides',
+            waitTimes: function(parkName){
+                return 'offlines.park.' + encodeURIComponent(parkName);    
+            }    
+        }
+    };
+
+}]);
+
 offlinesApp.factory('localPersistenceStrategy', 
-           ['$window', '_', 
-    function($window,   _){
+           ['$window', '_', 'Enums', 
+    function($window,   _,   Enums){
 
         var svc = {
             key: function(parkName){
@@ -16,6 +29,8 @@ offlinesApp.factory('localPersistenceStrategy',
                 try {
                     var currentPark = _.clone(park, true);
 
+                    var localStorageKey = Enums.localStorageKeys.waitTimes(park.name);
+
                     var addNewDurationIntoWaitTimesArray = function(currentPark){
                         currentPark.rides.forEach(function(ride){
                             if(ride.newDuration){
@@ -24,7 +39,7 @@ offlinesApp.factory('localPersistenceStrategy',
                                     ride.waitTimes = [];
                                 }
 
-                                ride.waitTimes.push({dateTime: new Date(), duration: ride.newDuration});
+                                ride.waitTimes.push({dateTime: new Date(), duration: ride.newDuration.duration });
 
                                 delete ride.newDuration;
                             }
@@ -34,7 +49,7 @@ offlinesApp.factory('localPersistenceStrategy',
                     
                     var extractExistingDataFromLocalStorage = function(){
 
-                        var localData = $window.localStorage[svc.key(currentPark.name)];
+                        var localData = $window.localStorage[localStorageKey];
 
                         if(localData){
                             localData = JSON.parse(localData);
@@ -61,7 +76,7 @@ offlinesApp.factory('localPersistenceStrategy',
 
                     var dataToPersist = mergeNewAndLocalData(currentPark, localPark);
 
-                    $window.localStorage[svc.key] = JSON.stringify(dataToPersist);
+                    $window.localStorage[localStorageKey] = JSON.stringify(dataToPersist);
 
                     deferred.resolve();
 
@@ -70,11 +85,24 @@ offlinesApp.factory('localPersistenceStrategy',
                 }
 
                 return deferred.promise;
+            },
+
+            getParksAndRides: function(){
+
+                var deferred = Q.defer();
+
+                var localStorageKey = Enums.localStorageKeys.parksAndRides;
+
+                var parks = JSON.parse($window.localStorage[localStorageKey]);
+                deferred.resolve(parks);
+
+                return deferred.promise;                
             }
         };
 
         return {
-            addWaitTime: svc.addWaitTime
+            addWaitTime: svc.addWaitTime,
+            getParksAndRides: svc.getParksAndRides
         };
     
     }]);
@@ -84,6 +112,7 @@ offlinesApp.factory('remotePersistenceStrategy',
     function($http){
 
     var svc = {
+
         addWaitTime: function(park){
             var deferred = Q.defer();
 
@@ -104,18 +133,35 @@ offlinesApp.factory('remotePersistenceStrategy',
             })
 
             return deferred.promise;
-        }    
+        },
+
+        getParksAndRides: function(){
+
+            var deferred = Q.defer();
+
+            $http.get('/api/parks')
+                .success(function(parks){
+                    deferred.resolve(parks);  
+                })
+                .error(function(error){
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+
+        }
     };
 
     return {
-        addWaitTime: svc.addWaitTime
+        addWaitTime: svc.addWaitTime,
+        getParksAndRides: svc.getParksAndRides
     };
     
 }]);
 
-offlinesApp.service('persistenceService', 
-           ['$window','remotePersistenceStrategy', 'localPersistenceStrategy', 
-    function($window,  remotePersistenceStrategy,   localPersistenceStrategy){
+offlinesApp.service('parkService', 
+            ['$http', '$window', 'remotePersistenceStrategy', 'localPersistenceStrategy', 'Enums',
+    function ($http,   $window,   remotePersistenceStrategy,   localPersistenceStrategy,   Enums){
 
         var persistenceStrategy = localPersistenceStrategy;
 
@@ -129,19 +175,7 @@ offlinesApp.service('persistenceService',
 
         $window.Offline.check();
 
-        this.addWaitTime = function(park){
-            return persistenceStrategy.addWaitTime(park);
-        };
-    
-    }]);
-
-offlinesApp.factory('parkService', 
-            ['$http', '$window', 'persistenceService',
-    function ($http,   $window,   persistenceService){
-
         var svc = {
-
-            key: 'offlines.parks.rides',
 
             parks: null,
 
@@ -149,25 +183,34 @@ offlinesApp.factory('parkService',
 
                 var deferred = Q.defer();
 
+                var localStorageKey = Enums.localStorageKeys.parksAndRides;
+
                 if(svc.parks != null){
 
                     deferred.resolve(svc.parks);    
 
-                } else if($window.localStorage[svc.key] === undefined){
+                } else if($window.localStorage[localStorageKey] === undefined){
 
-                    $http.get('/api/parks').success(function(parks){
-                        $window.localStorage[svc.key] = JSON.stringify(parks);
-                        svc.parks = parks;  
-                        deferred.resolve(svc.parks);  
-                    }).error(function(error){
-                        deferred.reject(error);
-                    });
+                    remotePersistenceStrategy.getParksAndRides().done(
+                        function(parks){
+                            $window.localStorage[localStorageKey] = JSON.stringify(parks);
+                            svc.parks = parks;
+                            deferred.resolve(svc.parks);
+                        },
+                        function(error){
+                            deferred.reject(error);
+                        });
 
                 } else {
 
-                    svc.parks = JSON.parse($window.localStorage[svc.key]);
-                    deferred.resolve(svc.parks);
-
+                    localPersistenceStrategy.getParksAndRides().done(
+                        function(parks){
+                            svc.parks = parks;
+                            deferred.resolve(svc.parks);
+                        },
+                        function(error){
+                            deferred.reject(error);
+                        });
                 }
 
                 return deferred.promise;
@@ -194,7 +237,7 @@ offlinesApp.factory('parkService',
             },
         
             addWaitTime: function(park){
-                return persistenceService.addWaitTime(park);
+                return persistenceStrategy.addWaitTime(park);
             }   
         };
 
