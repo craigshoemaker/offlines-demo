@@ -1,13 +1,10 @@
 ﻿'use strict';
 
 offlinesApp.factory('localPersistenceStrategy', 
-           ['$window', '_', 'Enums', 
-    function($window,   _,   Enums){
+           ['$window', '_', 'Q', 'Enums', 
+    function($window,   _,   Q,   Enums){
 
         var svc = {
-            key: function(parkName){
-                return 'offlines.park.' + parkName;    
-            },
 
             addWaitTime: function(park){
 
@@ -16,7 +13,7 @@ offlinesApp.factory('localPersistenceStrategy',
                 try {
                     var currentPark = _.clone(park, true);
 
-                    var localStorageKey = Enums.localStorageKeys.waitTimes(park.name);
+                    var localStorageKey = Enums.localStorageKeys.parks;
 
                     var addNewDurationIntoWaitTimesArray = function(currentPark){
                         currentPark.rides.forEach(function(ride){
@@ -46,22 +43,44 @@ offlinesApp.factory('localPersistenceStrategy',
                         return null;
                     };
 
-                    var mergeNewAndLocalData = function(currentPark, localPark){
+                    var mergeNewAndLocalData = function(parks, currentPark){
 
-                        if(localPark){
-                            localPark.rides.forEach(function(ride, i){
-                                ride.waitTimes = ride.waitTimes.concat(currentPark.rides[i].waitTimes);
-                            });
-                            return localPark;
-                        } else {
-                            return currentPark;    
-                        }
+                        debugger;
+
+                        //find current park in parks
+                        var i;
+                        var existingPark = _.find(parks, function(park, index){
+                            var match = park.name === currentPark.name;
+                            if(match) i = index;
+                            return match;
+                        });
+
+                        existingPark.rides.forEach(function(ride, i){
+                            if(!_.isArray(ride.waitTimes)){
+                                ride.waitTimes = [];
+                            }
+                            ride.waitTimes = ride.waitTimes.concat(currentPark.rides[i].waitTimes);
+                        });
+
+                        parks[i] = existingPark;
+
+                        return parks;
+
+                        //if(localPark){
+                        //    localPark.rides.forEach(function(ride, i){
+                        //        ride.waitTimes = ride.waitTimes.concat(currentPark.rides[i].waitTimes);
+                        //    });
+                        //    return localPark;
+                        //} else {
+                        //    return currentPark;    
+                        //}
                     };
 
-                    currentPark = addNewDurationIntoWaitTimesArray(currentPark);  
-                    var localPark = extractExistingDataFromLocalStorage();
+                    currentPark = addNewDurationIntoWaitTimesArray(currentPark);
 
-                    var dataToPersist = mergeNewAndLocalData(currentPark, localPark);
+                    var parks = extractExistingDataFromLocalStorage();
+
+                    var dataToPersist = mergeNewAndLocalData(parks, currentPark);
 
                     $window.localStorage[localStorageKey] = JSON.stringify(dataToPersist);
 
@@ -78,7 +97,7 @@ offlinesApp.factory('localPersistenceStrategy',
 
                 var deferred = Q.defer();
 
-                var localStorageKey = Enums.localStorageKeys.parksAndRides;
+                var localStorageKey = Enums.localStorageKeys.parks;
 
                 var parks = JSON.parse($window.localStorage[localStorageKey]);
                 deferred.resolve(parks);
@@ -170,7 +189,7 @@ offlinesApp.service('parkService',
 
                 var deferred = Q.defer();
 
-                var localStorageKey = Enums.localStorageKeys.parksAndRides;
+                var localStorageKey = Enums.localStorageKeys.parks;
 
                 if(svc.parks != null){
 

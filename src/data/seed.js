@@ -67,7 +67,7 @@
             name: 'Magic Kingdom',
             rides: [
                 {
-                    name: 'Barn Stormer',
+                    name: 'Big Thunder Mountain',
                     waitTimes:[
                         //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
                         //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
@@ -144,17 +144,6 @@
             name: 'Hollywood Studios',
             rides: [
                 {
-                    name: 'Great Movie Ride',
-                    waitTimes:[
-                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
-                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
-                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
-                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
-                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
-                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
-                    ]
-                },
-                {
                     name: 'Rock \'n\' Roller Coaster',
                     waitTimes:[
                         //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
@@ -176,6 +165,17 @@
                         //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
                     ]
                 },
+                {
+                    name: 'Tower of Terror',
+                    waitTimes:[
+                        //{ dateTime: new Date('01/01/2014 12:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 13:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 14:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 15:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 16:38:35'), duration: getRandomWaitTime()},
+                        //{ dateTime: new Date('01/01/2014 17:38:35'), duration: getRandomWaitTime()}
+                    ]
+                }
             ]    
         }
     ];

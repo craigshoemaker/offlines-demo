@@ -2,10 +2,12 @@
 
 offlinesApp.controller('indexController', 
 
-            ['$scope','parkService', 
-    function ($scope,  parkService) {
+            ['$scope','parkService', 'syncService',
+    function ($scope,  parkService,   syncService) {
 
         $scope.error = null;
+
+        syncService.init();
 
         $scope.parks = parkService.getParksAndRides().done(
             function(parks){

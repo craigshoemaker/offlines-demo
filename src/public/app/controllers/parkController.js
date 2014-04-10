@@ -47,12 +47,14 @@ offlinesApp.controller('parkController',
 
                 function(waitTime){
 
+                    // initialize confirmation message
                     $scope.showConfirm = false;
                     $scope.doFade = false;
 
                     // clean up model to clear out 
                     // drop down bindings on the UI
                     $scope.park.rides.forEach(function(ride){
+                        ride.waitTimes = [];
                         delete ride.newDuration;
                     });
 
