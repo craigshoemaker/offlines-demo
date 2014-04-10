@@ -23,7 +23,9 @@
         });
 
         app.get('/parks/:parkName', function(request, response){
-            response.render('park'); 
+            var parkName = request.params.parkName;
+
+            response.render('park',{title: parkName}); 
         });
     };
 

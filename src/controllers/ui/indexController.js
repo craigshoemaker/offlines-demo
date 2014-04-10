@@ -4,7 +4,7 @@
 
         app.get('/', function(request, response){
 
-            response.render('index');
+            response.render('index',{title: 'Parks'});
 
         });
     };

@@ -1,18 +1,5 @@
 ﻿'use strict';
 
-offlinesApp.factory('Enums', [function(){
-
-    return {
-        localStorageKeys: {
-            parksAndRides: 'offlines.parks.rides',
-            waitTimes: function(parkName){
-                return 'offlines.park.' + encodeURIComponent(parkName);    
-            }    
-        }
-    };
-
-}]);
-
 offlinesApp.factory('localPersistenceStrategy', 
            ['$window', '_', 'Enums', 
     function($window,   _,   Enums){
