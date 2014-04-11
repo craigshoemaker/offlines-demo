@@ -14,6 +14,7 @@
 
     controller.init = function(app){
 
+        // get all park info
         app.get('/api/parks', function(request, response){
             try {
                 db.parks.getParksAndRides(function (error, parks) {
@@ -30,6 +31,7 @@
             }
         });
 
+        // get park by name
         app.get('/api/parks/:parkName', function(request, response){
             try {
                 var name = request.params.parkName;
@@ -66,6 +68,7 @@
             }
         });
 
+        // delete park
         app.delete('/api/parks/:parkName', function(request, response){
             var name = request.params.parkName;
 
@@ -97,6 +100,11 @@
                 error.send(response);
             }
 
+        });
+
+        // sync wait times
+        app.post('/api/sync', function(request, response){
+            response.send(true);
         });
     };
 

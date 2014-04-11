@@ -11,37 +11,38 @@
         <link href="/css/site.css" rel="stylesheet" />
 		@html.block('head')
 	</head>
-<body class="container" data-ng-app="offlinesApp">
-    <div class="push-top-down-sm">
-        <a href="/"><span class="sr-only">OFFLINES</span><img src="/img/offlines-logo.png" alt="offlines: record ride wait times with ease" title="offlines: record ride wait times with ease" class="img-responsive" /></a> record attraction wait times with ease
-    </div>
-    <div data-ng-controller="syncController">
-        <div id="message-sync" data-ng-show="showSyncMessage">
-            <i class="fa fa-exclamation-circle text-danger"></i> You have wait times not saved to the server...
-            <button class="btn btn-default btn-xs btn-primary pull-right" data-ng-click="sync()"><i class="fa fa-refresh"></i> Sync now</button>
+    <body class="container" data-ng-app="offlinesApp">
+        <div class="push-top-down-sm">
+            <a href="/"><span class="sr-only">OFFLINES</span><img src="/img/offlines-logo.png" alt="offlines: record ride wait times with ease" title="offlines: record ride wait times with ease" class="img-responsive" /></a> record attraction wait times with ease
         </div>
-    </div>
-    @if(model.title){
-    <h1>@model.title</h1>
-    }
-    <article>
-        @html.block('body')
-    </article>
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-    <script src="/lib/lodash/dist/lodash.min.js"></script>
-    <script src="/lib/angular/angular.js"></script>
-    <script src="/lib/angular-route/angular-route.js"></script>
-    <script src="/lib/angular-resource/angular-resource.js"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/lib/offline/offline.min.js"></script>
-    <!-- development only -->
-    <script src="/lib/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
-    <!-- /development only -->
-    <script src="/lib/q/q.js"></script>
-    <script src="/app/app.js"></script>
-    <script src="/app/services/parkService.js"></script>
-    <script src="/app/services/syncService.js"></script>
-    <script src="/app/controllers/syncController.js"></script>
-    @html.block('scripts')
-</body>
+        <div data-ng-controller="syncController">
+            <div id="message-sync" data-ng-show="showSyncMessage">
+                <i class="fa fa-exclamation-circle text-danger"></i> You have wait times not saved to the server...
+                <button class="btn btn-default btn-xs btn-primary pull-right" data-ng-click="sync()"><i class="fa fa-refresh"></i> Sync now</button>
+            </div>
+        </div>
+        @if(model.title){
+        <h1>@model.title</h1>
+        }
+        <article>
+            @html.block('body')
+        </article>
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/lib/lodash/dist/lodash.min.js"></script>
+        <script src="/lib/angular/angular.js"></script>
+        <script src="/lib/angular-route/angular-route.js"></script>
+        <script src="/lib/angular-resource/angular-resource.js"></script>
+        <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/lib/offline/offline.min.js"></script>
+        <!-- development only -->
+        <script src="/lib/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
+        <!-- /development only -->
+        <script src="/lib/q/q.js"></script>
+        <script src="/app/app.js"></script>
+        <script src="/app/services/persistenceStrategies.js"></script>
+        <script src="/app/services/parkService.js"></script>
+        <script src="/app/services/syncService.js"></script>
+        <script src="/app/controllers/syncController.js"></script>
+        @html.block('scripts')
+    </body>
 </html>

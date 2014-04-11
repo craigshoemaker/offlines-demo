@@ -1,10 +1,21 @@
 ﻿'option strict'
 
 offlinesApp.service('syncService',
-            ['$window', '_', 'Q', 
-    function( $window,   _,   Q){
+            ['$window', '$http', '$rootScope', '_', 'Q', 'Enums',
+    function( $window,   $http,   $rootScope,   _,   Q,   Enums){
     
     var svc = {
+
+        key: Enums.localStorageKeys.parks,
+
+        getLocalData: function(){
+            return $window.localStorage[svc.key];
+        },
+
+        setLocalData: function(parks){
+            parks = JSON.stringify(parks);
+            $window.localStorage[svc.key] = parks;
+        },
 
         check: function(parks){
 
@@ -22,12 +33,50 @@ offlinesApp.service('syncService',
 
             return returnValue;
         },
+
+        removeWaitTimesFromLocalData: function(){
+            var data = svc.getLocalData();
+
+            var parks = JSON.parse(data);
+
+            parks.forEach(function(park){
+                park.rides.forEach(function(ride){
+                    ride.waitTimes = [];
+                });
+            });
+
+            svc.setLocalData(parks);
+        },
         
-        sync: function(){
-            alert('I\'mma gonna sync!');
+        sync: function(parks){
+            
+            var deferred = Q.defer();
+            var data = svc.getLocalData();
+
+            if(data){
+                $http.post('/api/sync', {
+                        data : data
+                    })
+                    .success(function(result){
+
+                        svc.removeWaitTimesFromLocalData();
+
+                        deferred.resolve({
+                            success: result,
+                        });
+                    })
+                    .error(function(error){
+                        deferred.reject(error);
+                    });
+            }
+
+            return deferred.promise;
         }  
     };
 
-    return svc;
+    return {
+        check: svc.check,
+        sync: svc.sync    
+    };
     
     }]);

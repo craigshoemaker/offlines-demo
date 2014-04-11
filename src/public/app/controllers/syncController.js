@@ -8,9 +8,16 @@ offlinesApp.controller('syncController',
         $rootScope.error = null;
         $scope.showSyncMessage = false;
 
-        var checkForNeedToSync = function(){
-            $scope.showSyncMessage = syncService.check($rootScope.parks);
-            $scope.$apply(); 
+        var getData = function(callback){
+            parkService.getParksAndRides().done(
+                function(parks){
+                    $rootScope.parks = parks;
+                    if(callback)callback();
+                }, 
+                function(error){
+                    $rootScope.error = error;
+                    $rootScope.$apply();
+                });
         };
 
         $window.Offline.on('confirmed-down', function () {
@@ -19,19 +26,26 @@ offlinesApp.controller('syncController',
         });
 
         $window.Offline.on('confirmed-up', function () {
-            checkForNeedToSync();
+            getData(function(){
+                $scope.showSyncMessage = syncService.check($rootScope.parks); 
+                $scope.$apply();
+            });
         });
 
         $scope.sync = function(){
-            syncService.sync();
+            syncService.sync().done(
+                function(result){
+                    if(result.success){
+                        $scope.showSyncMessage = false;
+                        $scope.$apply();
+                    }
+                }, 
+                function(error){
+                    $rootScope.error = error;
+                    $rootScope.$apply();
+                });
         };
 
-        parkService.getParksAndRides().done(
-            function(parks){
-                $rootScope.parks = parks;
-            }, 
-            function(error){
-                $rootScope.error = error;
-                $scope.$apply();
-            });
+        getData();
+
     }]);

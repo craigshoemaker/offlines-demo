@@ -47,6 +47,7 @@
     <Compile Include="data\seed.js" />
     <Compile Include="gruntfile.js" />
     <Compile Include="public\app\controllers\syncController.js" />
+    <Compile Include="public\app\services\persistenceStrategies.js" />
     <Compile Include="public\app\services\parkService.js" />
     <Compile Include="public\app\services\syncService.js" />
     <Compile Include="public\lib\angular-resource\angular-resource.js" />

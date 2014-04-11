@@ -56,4 +56,5 @@
     background: #f6f6f6;
     color: #444444;
     overflow: hidden;
+    z-index:700;
 }
