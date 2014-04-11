@@ -2,8 +2,8 @@
 
 offlinesApp.controller('parkController', 
 
-            ['$scope','$window', '$location', '$timeout', 'parkService', 
-    function ($scope,  $window,   $location,   $timeout,   parkService) {
+            ['$scope','$window', '$location', '$timeout', 'parkService', 'syncService', 
+    function ($scope,  $window,   $location,   $timeout,   parkService,   syncService) {
 
         var loc = $location.absUrl();
         var parts = loc.split('/');
@@ -26,15 +26,18 @@ offlinesApp.controller('parkController',
         };
 
         $scope.error = null;
-
         $scope.showConfirm = false;
-
         $scope.durationOptions = buildDurationOptions();
+
+        $scope.parks = parkService.getParksAndRides().done(
+            function(parks){
+                $scope.parks = parks;
+            },
+            reportError);
 
         parkService.getParkByName(parkName).done(
             function(park){
                 $scope.park = park;
-                $scope.$apply();
             },
             reportError);
 

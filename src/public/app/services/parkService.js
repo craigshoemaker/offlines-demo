@@ -45,9 +45,6 @@ offlinesApp.factory('localPersistenceStrategy',
 
                     var mergeNewAndLocalData = function(parks, currentPark){
 
-                        debugger;
-
-                        //find current park in parks
                         var i;
                         var existingPark = _.find(parks, function(park, index){
                             var match = park.name === currentPark.name;
@@ -191,17 +188,12 @@ offlinesApp.service('parkService',
 
                 var localStorageKey = Enums.localStorageKeys.parks;
 
-                if(svc.parks != null){
-
-                    deferred.resolve(svc.parks);    
-
-                } else if($window.localStorage[localStorageKey] === undefined){
+                if($window.localStorage[localStorageKey] === undefined){
 
                     remotePersistenceStrategy.getParksAndRides().done(
                         function(parks){
                             $window.localStorage[localStorageKey] = JSON.stringify(parks);
-                            svc.parks = parks;
-                            deferred.resolve(svc.parks);
+                            deferred.resolve(parks);
                         },
                         function(error){
                             deferred.reject(error);
@@ -211,8 +203,7 @@ offlinesApp.service('parkService',
 
                     localPersistenceStrategy.getParksAndRides().done(
                         function(parks){
-                            svc.parks = parks;
-                            deferred.resolve(svc.parks);
+                            deferred.resolve(parks);
                         },
                         function(error){
                             deferred.reject(error);

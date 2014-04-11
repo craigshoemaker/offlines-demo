@@ -2,7 +2,7 @@
 
 	@html.block('body', function(model){
 
-        <section data-ng-app="offlinesApp" data-ng-controller="parkController" class="push-top-down-md">
+        <div data-ng-controller="parkController" class="push-top-down-md">
 
             <div class="alert alert-danger" data-ng-hide="error === null">
                 <span data-ng-bind="error.message"></span>
@@ -38,8 +38,7 @@
             <div class="alert alert-info push-top-down-sm" 
                  data-ng-show="showConfirm"
                  data-ng-class="{fade:doFade}"><strong>Wait times saved</strong></div>
-
-        </section>
+        </div>
     })
 
 	@html.block('scripts', function(model){

@@ -1,21 +1,31 @@
 ﻿'option strict'
 
-offlinesApp.factory('syncService',
-            ['$window', 'Enums', 'parkService', 
-    function( $window,   Enums,   parkService){
+offlinesApp.service('syncService',
+            ['$window', '_', 'Q', 
+    function( $window,   _,   Q){
     
     var svc = {
 
-        init: function(){
+        check: function(parks){
 
-            //parkService.getParksAndRides().done(
-            //    function(parks){
-            //        alert(parks);                    
-            //    }, 
-            //    function(error){
-            //        alert(error);
-            //    });
-        }    
+            var returnValue = false;
+
+            if(parks){
+                parks.forEach(function(park){
+                    park.rides.forEach(function(ride){
+                        if(_.isArray(ride.waitTimes) && ride.waitTimes.length > 0){
+                            returnValue = true;
+                        }
+                    });
+                });
+            }
+
+            return returnValue;
+        },
+        
+        sync: function(){
+            alert('I\'mma gonna sync!');
+        }  
     };
 
     return svc;
