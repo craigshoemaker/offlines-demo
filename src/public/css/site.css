@@ -38,23 +38,26 @@
     background-color:#eee;
 }
 
-#message-sync {
+.fixed-message {
     position: fixed;
     display:block;
     margin: auto;
     top: -2px;
     left: 0;
     right: 0;
+    overflow: hidden;
+    z-index:700;
+    width: 38em;
     -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 1em rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 1em rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 1em rgba(0, 0, 0, 0.3);
+}
+
+.offline-theme {
     font-family: "Lucida Grande", sans-serif;
     font-size: 14px;
     padding: 1em;
-    width: 38em;
     max-width: 100%;
     background: #f6f6f6;
     color: #444444;
-    overflow: hidden;
-    z-index:700;
 }

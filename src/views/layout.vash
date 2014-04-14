@@ -16,9 +16,12 @@
             <a href="/"><span class="sr-only">OFFLINES</span><img src="/img/offlines-logo.png" alt="offlines: record ride wait times with ease" title="offlines: record ride wait times with ease" class="img-responsive" /></a> record attraction wait times with ease
         </div>
         <div data-ng-controller="syncController">
-            <div id="message-sync" data-ng-show="showSyncMessage">
+            <div class="fixed-message offline-theme" data-ng-show="showSyncMessage">
                 <i class="fa fa-exclamation-circle text-danger"></i> You have wait times not saved to the server...
                 <button class="btn btn-default btn-xs btn-primary pull-right" data-ng-click="sync()"><i class="fa fa-refresh"></i> Sync now</button>
+            </div>
+            <div class="fixed-message alert alert-success" data-ng-show="showSyncCompleteMessage" ng-class="{fade:doFade}">
+                <i class="fa fa-smile-o"></i> All local data is now saved to the server.
             </div>
         </div>
         @if(model.title){
@@ -27,6 +30,8 @@
         <article>
             @html.block('body')
         </article>
+        <hr />
+        <a href="/parks">All Data</a>
         <script src="/lib/jquery/dist/jquery.min.js"></script>
         <script src="/lib/lodash/dist/lodash.min.js"></script>
         <script src="/lib/angular/angular.js"></script>

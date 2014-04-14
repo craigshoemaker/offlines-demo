@@ -2,11 +2,13 @@
 
 offlinesApp.controller('syncController', 
 
-            ['$scope', '$rootScope', '$window', 'parkService', 'syncService',
-    function ($scope,   $rootScope,   $window,   parkService,   syncService) {
+            ['$scope', '$rootScope', '$timeout', '$window', 'parkService', 'syncService',
+    function ($scope,   $rootScope,   $timeout,   $window,   parkService,   syncService) {
 
         $rootScope.error = null;
         $scope.showSyncMessage = false;
+        $scope.showSyncCompleteMessage = false;
+        $scope.doFade = false;
 
         var getData = function(callback){
             parkService.getParksAndRides().done(
@@ -36,7 +38,15 @@ offlinesApp.controller('syncController',
             syncService.sync().done(
                 function(result){
                     if(result.success){
+                        $scope.doFade = false;
+
                         $scope.showSyncMessage = false;
+                        $scope.showSyncCompleteMessage = true;
+
+                        $timeout(function(){
+                            $scope.doFade = true;
+                        }, 2500);
+
                         $scope.$apply();
                     }
                 }, 

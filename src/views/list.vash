@@ -1,5 +1,21 @@
 ﻿@html.extend('layout', function(model){
 
+    @html.block('head', function(model){
+        <style>
+            .waitTime {
+                max-height: 200px;
+                overflow: auto;
+                padding-bottom:1em;
+                margin-bottom:2em;
+            }
+
+                .waitTime table caption {
+                    font-weight:bold;
+                    margin-top:10px;
+                }
+        </style>
+    })
+
 	@html.block('body', function(model){
 
         <div class="row">
@@ -7,11 +23,11 @@
         @model.parks.forEach(function(park, index){
             @{ var offsetClassName = (index % 2)?'col-sm-offset-1':''}
             <div class="col-sm-5 well @offsetClassName">
-                <h2>@park.name</h2>
+                <h2 class="h3">@park.name</h2>
                     @park.rides.forEach(function(ride){
-                        <h3>@ride.name</h3>
-                        <div style="max-height:200px; overflow:auto;">
+                        <div class="waitTime">
                         <table class="table table-striped table-responsive table-condensed table-hover">
+                            <caption class="text-left">@ride.name</caption>
                             <thead>
                                 <tr>
                                     <th>Minutes</th>
