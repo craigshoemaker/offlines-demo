@@ -6,13 +6,9 @@
 
         app.get('/parks', function(request, response){
 
-            db.parks.getNames(function(error, parks){
+            db.parks.get(function(error, parks){
 
-                parks.forEach(function(park){
-                    park.nameEncoded = encodeURIComponent(park.name);    
-                });
-
-                response.render('index', 
+                response.render('list', 
                     {
                         title:'Parks', 
                         parks: parks,

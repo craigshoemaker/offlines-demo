@@ -93,7 +93,7 @@
             var duration = parseInt(request.params.duration);
 
             if(!isNaN(duration)){
-                db.rides.addWaitTime(parkName, rideName, duration, function(error, waitTime){
+                db.rides.addWaitTime(parkName, rideName, null, duration, function(error, waitTime){
                     response.send(waitTime);
                 });  
             } else {
@@ -104,7 +104,17 @@
 
         // sync wait times
         app.post('/api/sync', function(request, response){
-            response.send(true);
+
+            var data = request.body.data;
+            var parks = JSON.parse(data);
+
+            db.parks.addWaitTimes(parks, function(error, result){
+                if(error){
+                    error.send(error);
+                } else {
+                    response.send(result);
+                }
+            });
         });
     };
 

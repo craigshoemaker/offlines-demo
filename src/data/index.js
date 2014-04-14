@@ -107,16 +107,37 @@
                     }
                 });
             });
+        },
+
+        addWaitTimes: function(parks, next){
+            parks.forEach(function(park){
+                park.rides.forEach(function(ride){
+                    if(ride.waitTimes){
+                        ride.waitTimes.forEach(function(waitTime){
+                            db.rides.addWaitTime(park.name, ride.name, waitTime.dateTime, waitTime.duration, next);
+                        });
+                    }
+                });
+            });
+
+            next(null, {success: true});
         }
     };
 
     db.rides = {
-        addWaitTime: function(parkName, rideName, newDuration, next) {
+        addWaitTime: function(parkName, rideName, newDateTime, newDuration, next) {
+
+            if(!newDateTime){
+                newDateTime = new Date();
+            } else {
+                newDateTime = new Date(newDateTime);    
+            }
+
             _database.get(function(error, db){
                 if(error){
                     next(error, null);
                 } else {
-                    var waitTime = {dateTime: new Date(), duration: newDuration};
+                    var waitTime = {dateTime: newDateTime, duration: newDuration};
                     db.parks.update(
                         {name: parkName, 'rides.name': rideName},
                         {$push: {'rides.$.waitTimes': waitTime}}, 
