@@ -11,31 +11,28 @@ offlinesApp.controller('syncController',
         $scope.doFade = false;
 
         var getData = function(callback){
-            parkService.getParksAndRides().done(
+            parkService.getParksAndRides().then(
                 function(parks){
                     $rootScope.parks = parks;
                     if(callback)callback();
                 }, 
                 function(error){
                     $rootScope.error = error;
-                    $rootScope.$apply();
                 });
         };
 
         $window.Offline.on('confirmed-down', function () {
             $scope.showSyncMessage = false;
-            $scope.$apply();
         });
 
         $window.Offline.on('confirmed-up', function () {
             getData(function(){
                 $scope.showSyncMessage = syncService.check($rootScope.parks); 
-                $scope.$apply();
             });
         });
 
         $scope.sync = function(){
-            syncService.sync().done(
+            syncService.sync().then(
                 function(result){
                     if(result.success){
                         $scope.doFade = false;
@@ -46,13 +43,10 @@ offlinesApp.controller('syncController',
                         $timeout(function(){
                             $scope.doFade = true;
                         }, 2500);
-
-                        $scope.$apply();
                     }
                 }, 
                 function(error){
                     $rootScope.error = error;
-                    $rootScope.$apply();
                 });
         };
 

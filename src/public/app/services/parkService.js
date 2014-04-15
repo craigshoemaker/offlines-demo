@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 offlinesApp.service('parkService', 
-            ['$http', '$window', 'remotePersistenceStrategy', 'localPersistenceStrategy', 'Enums',
-    function ($http,   $window,   remotePersistenceStrategy,   localPersistenceStrategy,   Enums){
+            ['$http', '$window', '$q', 'remotePersistenceStrategy', 'localPersistenceStrategy', 'Enums',
+    function ($http,   $window,   $q,   remotePersistenceStrategy,   localPersistenceStrategy,   Enums){
 
         var persistenceStrategy = localPersistenceStrategy;
 
@@ -22,13 +22,13 @@ offlinesApp.service('parkService',
 
             getParksAndRides: function(){
 
-                var deferred = Q.defer();
+                var deferred = $q.defer();
 
                 var localStorageKey = Enums.localStorageKeys.parks;
 
                 if($window.localStorage[localStorageKey] === undefined){
 
-                    remotePersistenceStrategy.getParksAndRides().done(
+                    remotePersistenceStrategy.getParksAndRides().then(
                         function(parks){
                             $window.localStorage[localStorageKey] = JSON.stringify(parks);
                             deferred.resolve(parks);
@@ -39,7 +39,7 @@ offlinesApp.service('parkService',
 
                 } else {
 
-                    localPersistenceStrategy.getParksAndRides().done(
+                    localPersistenceStrategy.getParksAndRides().then(
                         function(parks){
                             deferred.resolve(parks);
                         },
@@ -52,11 +52,11 @@ offlinesApp.service('parkService',
             },
 
             getParkByName: function(name){
-                var deferred = Q.defer();
+                var deferred = $q.defer();
 
                 var parkName = decodeURIComponent(name);
 
-                svc.getParksAndRides().done(
+                svc.getParksAndRides().then(
                     function(parks){
                         parks.forEach(function(park){
                             if(park.name === parkName){

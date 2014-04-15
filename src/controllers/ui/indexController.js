@@ -7,6 +7,11 @@
             response.render('index',{title: 'Parks'});
 
         });
+
+        app.get('/app.appcache',function(request, response){
+            response.set('Content-Type', 'text/cache-manifest');
+            response.render('appcache');
+        });
     };
 
 }(module.exports));

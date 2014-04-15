@@ -1,14 +1,14 @@
 ﻿'use strict';
 
 offlinesApp.factory('localPersistenceStrategy', 
-           ['$window', '_', 'Q', 'Enums', 
-    function($window,   _,   Q,   Enums){
+           ['$window', '_', '$q', 'Enums', 
+    function($window,   _,   $q,   Enums){
 
         var svc = {
 
             addWaitTime: function(park){
 
-                var deferred = Q.defer();
+                var deferred = $q.defer();
 
                 try {
                     var currentPark = _.clone(park, true);
@@ -56,7 +56,10 @@ offlinesApp.factory('localPersistenceStrategy',
                             if(!_.isArray(ride.waitTimes)){
                                 ride.waitTimes = [];
                             }
-                            ride.waitTimes = ride.waitTimes.concat(currentPark.rides[i].waitTimes);
+
+                            if(_.isArray(currentPark.rides[i].waitTimes)){
+                                ride.waitTimes = ride.waitTimes.concat(currentPark.rides[i].waitTimes);
+                            }
                         });
 
                         parks[i] = existingPark;
@@ -83,7 +86,7 @@ offlinesApp.factory('localPersistenceStrategy',
 
             getParksAndRides: function(){
 
-                var deferred = Q.defer();
+                var deferred = $q.defer();
 
                 var localStorageKey = Enums.localStorageKeys.parks;
 
@@ -102,13 +105,13 @@ offlinesApp.factory('localPersistenceStrategy',
     }]);
 
 offlinesApp.factory('remotePersistenceStrategy', 
-           ['$http', 
-    function($http){
+           ['$http', '$q',
+    function($http,   $q){
 
     var svc = {
 
         addWaitTime: function(park){
-            var deferred = Q.defer();
+            var deferred = $q.defer();
 
             park.rides.forEach(function(ride){
                 if(ride.newDuration){
@@ -131,7 +134,7 @@ offlinesApp.factory('remotePersistenceStrategy',
 
         getParksAndRides: function(){
 
-            var deferred = Q.defer();
+            var deferred = $q.defer();
 
             $http.get('/api/parks')
                 .success(function(parks){

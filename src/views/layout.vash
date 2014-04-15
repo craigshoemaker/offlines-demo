@@ -42,7 +42,6 @@
         <!-- development only -->
         <script src="/lib/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
         <!-- /development only -->
-        <script src="/lib/q/q.js"></script>
         <script src="/app/app.js"></script>
         <script src="/app/services/persistenceStrategies.js"></script>
         <script src="/app/services/parkService.js"></script>

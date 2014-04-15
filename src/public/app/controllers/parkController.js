@@ -29,10 +29,9 @@ offlinesApp.controller('parkController',
         $scope.showConfirm = false;
         $scope.durationOptions = buildDurationOptions();
 
-        parkService.getParkByName(parkName).done(
+        parkService.getParkByName(parkName).then(
             function(park){
                 $scope.park = park;
-                $scope.$apply(); //required in case user comes directly to this page
             },
             reportError);
 
@@ -41,7 +40,7 @@ offlinesApp.controller('parkController',
         };
 
         $scope.save = function(){
-            parkService.addWaitTime($scope.park).done(
+            parkService.addWaitTime($scope.park).then(
 
                 function(waitTime){
 
@@ -61,8 +60,6 @@ offlinesApp.controller('parkController',
                     $timeout(function(){
                         $scope.doFade = true;    
                     }, 2500);
-                    
-                    $scope.$apply();
                 },
                 reportError);
         };

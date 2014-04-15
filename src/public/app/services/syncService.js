@@ -1,8 +1,8 @@
 ﻿'option strict'
 
 offlinesApp.service('syncService',
-            ['$window', '$http', '$rootScope', '_', 'Q', 'Enums',
-    function( $window,   $http,   $rootScope,   _,   Q,   Enums){
+            ['$window', '$http', '$rootScope', '_', '$q', 'Enums',
+    function( $window,   $http,   $rootScope,   _,   $q,   Enums){
     
     var svc = {
 
@@ -50,7 +50,7 @@ offlinesApp.service('syncService',
         
         sync: function(parks){
             
-            var deferred = Q.defer();
+            var deferred = $q.defer();
             var data = svc.getLocalData();
 
             if(data){

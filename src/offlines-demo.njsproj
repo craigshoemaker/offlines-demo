@@ -64,7 +64,6 @@
     <Compile Include="public\lib\moment\min\moment.min.js" />
     <Compile Include="public\lib\offlinejs-simulate-ui\offline-simulate-ui.min.js" />
     <Compile Include="public\lib\offline\offline.min.js" />
-    <Compile Include="public\lib\q\q.js" />
     <Compile Include="server.js" />
     <Compile Include="spec\data\index.spec.js" />
     <Content Include=".bowerrc" />
@@ -128,6 +127,7 @@
     <Content Include="public\lib\offline\themes\offline-theme-slide.css" />
     <Content Include="README.md" />
     <Content Include="tst.cmd" />
+    <Content Include="views\appcache.vash" />
     <Content Include="views\index.vash" />
     <Content Include="views\layout.vash" />
     <Content Include="views\list.vash" />
@@ -156,7 +156,6 @@
     <Folder Include="public\lib\lodash\dist\" />
     <Folder Include="public\lib\moment\" />
     <Folder Include="public\lib\moment\min\" />
-    <Folder Include="public\lib\q\" />
     <Folder Include="spec\" />
     <Folder Include="public\" />
     <Folder Include="public\lib\" />
