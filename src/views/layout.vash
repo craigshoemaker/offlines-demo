@@ -31,7 +31,7 @@
             @html.block('body')
         </article>
         <hr />
-        <a href="/parks">All Data</a>
+        <a href="/data">All Data</a>
         <script src="/lib/jquery/dist/jquery.min.js"></script>
         <script src="/lib/lodash/dist/lodash.min.js"></script>
         <script src="/lib/angular/angular.js"></script>
