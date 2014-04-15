@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-@if(model.isOfflinePage){
+@if(false){
 <html manifest="app.appcache">
 } else {
 <html>
