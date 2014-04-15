@@ -1,5 +1,9 @@
 ﻿<!DOCTYPE html>
+@if(model.isOfflinePage){
+<html manifest="app.appcache">
+} else {
 <html>
+}
 	<head>
 		<title>@model.title - Offlines</title>
         <link rel="shortcut icon" href="/img/fav.png" type="image/png">

@@ -12,7 +12,8 @@
                     {
                         title:'Parks', 
                         parks: parks,
-                        error: error
+                        error: error,
+                        isOfflinePage: false
                     });
             });
 

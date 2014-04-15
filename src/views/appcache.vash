@@ -38,5 +38,12 @@ CACHE:
 /app/controllers/indexController.js
 /app/controllers/parkController.js
 
+#images
+/img/offlines-logo.png
+/img/fav.png
+
 FALLBACK:
 /data /offline.html
+
+NETWORK:
+/favicon.ico

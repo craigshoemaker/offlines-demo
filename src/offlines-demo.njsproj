@@ -34,6 +34,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="controllers\ui\dataController.js" />
     <Compile Include="public\app\app.js" />
     <Compile Include="public\app\controllers\indexController.js" />
     <Compile Include="public\app\controllers\parkController.js" />
@@ -125,6 +126,7 @@
     <Content Include="public\lib\offline\themes\offline-theme-hubspot.css" />
     <Content Include="public\lib\offline\themes\offline-theme-slide-indicator.css" />
     <Content Include="public\lib\offline\themes\offline-theme-slide.css" />
+    <Content Include="public\offline.html" />
     <Content Include="README.md" />
     <Content Include="tst.cmd" />
     <Content Include="views\appcache.vash" />

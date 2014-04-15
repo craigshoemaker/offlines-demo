@@ -4,7 +4,10 @@
 
         app.get('/', function(request, response){
 
-            response.render('index',{title: 'Parks'});
+            response.render('index',{
+                title: 'Parks', 
+                isOfflinePage: true
+            });
 
         });
 
