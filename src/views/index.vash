@@ -2,7 +2,12 @@
 
 	@html.block('body', function(model){
 
-        <div data-ng-controller="indexController" class="push-top-down-md">
+        @{
+            // all the data being provided to this view
+            // is available on the syncController therefore
+            // this view does not need its own control
+        }
+        <div data-ng-controller="syncController" class="push-top-down-md">
 
             <div class="alert alert-danger" data-ng-hide="error === null">
                 <span data-ng-bind="error.message"></span>
@@ -14,9 +19,5 @@
                 </div>
             </div>
         </div>
-    })
-
-    @html.block('scripts', function(model){
-        <script src="/app/controllers/indexController.js"></script>
     })
 })

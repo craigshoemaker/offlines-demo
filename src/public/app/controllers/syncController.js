@@ -21,14 +21,18 @@ offlinesApp.controller('syncController',
                 });
         };
 
+        var getDataAndSetSyncMessage = function(){
+            getData(function(){
+                $scope.showSyncMessage = syncService.check($rootScope.parks); 
+            });
+        };
+
         $window.Offline.on('confirmed-down', function () {
             $scope.showSyncMessage = false;
         });
 
         $window.Offline.on('confirmed-up', function () {
-            getData(function(){
-                $scope.showSyncMessage = syncService.check($rootScope.parks); 
-            });
+            getDataAndSetSyncMessage();
         });
 
         $scope.sync = function(){
@@ -50,6 +54,6 @@ offlinesApp.controller('syncController',
                 });
         };
 
-        getData();
+        getDataAndSetSyncMessage();
 
     }]);

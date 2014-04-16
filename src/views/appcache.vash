@@ -35,7 +35,6 @@ CACHE:
 /app/services/parkService.js
 /app/services/syncService.js
 /app/controllers/syncController.js
-/app/controllers/indexController.js
 /app/controllers/parkController.js
 
 #images
