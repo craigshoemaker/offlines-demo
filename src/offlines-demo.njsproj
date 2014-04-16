@@ -36,7 +36,6 @@
   <ItemGroup>
     <Compile Include="controllers\ui\dataController.js" />
     <Compile Include="public\app\app.js" />
-    <Compile Include="public\app\controllers\indexController.js" />
     <Compile Include="public\app\controllers\parkController.js" />
     <Compile Include="config.js" />
     <Compile Include="controllers\api\parksController.js" />
