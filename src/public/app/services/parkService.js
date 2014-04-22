@@ -1,20 +1,20 @@
 ﻿'use strict';
 
 offlinesApp.service('parkService', 
-            ['$http', '$window', '$q', 'remotePersistenceStrategy', 'localPersistenceStrategy', 'Enums',
-    function ($http,   $window,   $q,   remotePersistenceStrategy,   localPersistenceStrategy,   Enums){
+            ['$http', '$q', 'localStorage', 'Offline', 'remotePersistenceStrategy', 'localPersistenceStrategy', 'Enums',
+    function ($http,   $q,   localStorage,   Offline,   remotePersistenceStrategy,   localPersistenceStrategy,   Enums){
 
         var persistenceStrategy = localPersistenceStrategy;
 
-        $window.Offline.on('confirmed-down', function () {
+        Offline.on('confirmed-down', function () {
             persistenceStrategy = localPersistenceStrategy;
         });
 
-        $window.Offline.on('confirmed-up', function () {
+        Offline.on('confirmed-up', function () {
             persistenceStrategy = remotePersistenceStrategy;
         });
 
-        $window.Offline.check();
+        Offline.check();
 
         var svc = {
 
@@ -26,11 +26,11 @@ offlinesApp.service('parkService',
 
                 var localStorageKey = Enums.localStorageKeys.parks;
 
-                if($window.localStorage[localStorageKey] === undefined){
+                if(localStorage[localStorageKey] === undefined){
 
                     remotePersistenceStrategy.getParksAndRides().then(
                         function(parks){
-                            $window.localStorage[localStorageKey] = JSON.stringify(parks);
+                            localStorage[localStorageKey] = JSON.stringify(parks);
                             deferred.resolve(parks);
                         },
                         function(error){

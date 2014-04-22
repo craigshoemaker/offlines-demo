@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 offlinesApp.factory('localPersistenceStrategy', 
-           ['$window', '_', '$q', 'Enums', 
-    function($window,   _,   $q,   Enums){
+           ['localStorage', '_', '$q', 'Enums', 
+    function(localStorage,   _,   $q,   Enums){
 
         var svc = {
 
@@ -33,7 +33,7 @@ offlinesApp.factory('localPersistenceStrategy',
                     
                     var extractExistingDataFromLocalStorage = function(){
 
-                        var localData = $window.localStorage[localStorageKey];
+                        var localData = localStorage[localStorageKey];
 
                         if(localData){
                             localData = JSON.parse(localData);
@@ -73,7 +73,7 @@ offlinesApp.factory('localPersistenceStrategy',
 
                     var dataToPersist = mergeNewAndLocalData(parks, currentPark);
 
-                    $window.localStorage[localStorageKey] = JSON.stringify(dataToPersist);
+                    localStorage[localStorageKey] = JSON.stringify(dataToPersist);
 
                     deferred.resolve();
 
@@ -90,7 +90,7 @@ offlinesApp.factory('localPersistenceStrategy',
 
                 var localStorageKey = Enums.localStorageKeys.parks;
 
-                var parks = JSON.parse($window.localStorage[localStorageKey]);
+                var parks = JSON.parse(localStorage[localStorageKey]);
                 deferred.resolve(parks);
 
                 return deferred.promise;                

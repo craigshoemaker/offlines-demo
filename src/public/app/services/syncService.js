@@ -1,20 +1,20 @@
 ﻿'option strict'
 
 offlinesApp.service('syncService',
-            ['$window', '$http', '$rootScope', '_', '$q', 'Enums',
-    function( $window,   $http,   $rootScope,   _,   $q,   Enums){
+            ['localStorage', '$http', '$rootScope', '_', '$q', 'Enums',
+    function( localStorage,   $http,   $rootScope,   _,   $q,   Enums){
     
     var svc = {
 
         key: Enums.localStorageKeys.parks,
 
         getLocalData: function(){
-            return $window.localStorage[svc.key];
+            return localStorage[svc.key];
         },
 
         setLocalData: function(parks){
             parks = JSON.stringify(parks);
-            $window.localStorage[svc.key] = parks;
+            localStorage[svc.key] = parks;
         },
 
         check: function(parks){

@@ -1,5 +1,5 @@
 ﻿CACHE MANIFEST
-#version 2
+#version 1.0
 
 CACHE:
 #pages
@@ -15,6 +15,7 @@ CACHE:
 /lib/fontawesome/fonts/fontawesome-webfont.svg
 /lib/fontawesome/fonts/fontawesome-webfont.ttf
 /lib/fontawesome/fonts/fontawesome-webfont.woff
+/lib/fontawesome/fonts/fontawesome-webfont.woff?v=4.0.3
 /lib/offline/themes/offline-theme-chrome.css
 /lib/offline/themes/offline-language-english.css
 /css/site.css
@@ -46,3 +47,4 @@ FALLBACK:
 
 NETWORK:
 /favicon.ico
+/api

@@ -13,4 +13,5 @@ offlinesApp.factory('Enums', [function(){
 }]);
 
 offlinesApp.constant('_', window._);
-offlinesApp.constant('Q', window.Q);
+offlinesApp.constant('localStorage', window.localStorage);
+offlinesApp.constant('Offline', window.Offline);
