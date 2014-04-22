@@ -46,5 +46,5 @@ FALLBACK:
 /data /offline.html
 
 NETWORK:
-/favicon.ico
-/api
+/favicon.ico	# allows offline.js to check for connectivity status
+/api			# allows the server to respond to requests for data
