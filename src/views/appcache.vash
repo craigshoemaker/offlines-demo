@@ -1,10 +1,13 @@
 ﻿CACHE MANIFEST
-#version 1.0
+#version 1
 
 CACHE:
 #pages
 /
-/parks
+/parks/Animal%20Kingdom
+/parks/epcot
+/parks/Hollywood%20Studios
+/parks/Magic%20Kingdom
 /offline.html
 
 #styles

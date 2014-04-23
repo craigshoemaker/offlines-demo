@@ -22,7 +22,10 @@
         app.get('/parks/:parkName', function(request, response){
             var parkName = request.params.parkName;
 
-            response.render('park',{title: parkName}); 
+            response.render('park',{
+                title: parkName,
+                isOfflinePage: true
+            }); 
         });
     };
 
