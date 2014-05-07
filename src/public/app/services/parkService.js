@@ -1,8 +1,8 @@
-﻿'use strict';
-
-offlinesApp.service('parkService', 
+﻿offlinesApp.service('parkService', 
             ['$http', '$q', 'localStorage', 'Offline', 'remotePersistenceStrategy', 'localPersistenceStrategy', 'Enums',
     function ($http,   $q,   localStorage,   Offline,   remotePersistenceStrategy,   localPersistenceStrategy,   Enums){
+
+        'use strict';
 
         var persistenceStrategy = localPersistenceStrategy;
 

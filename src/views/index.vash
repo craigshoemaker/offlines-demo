@@ -5,7 +5,7 @@
         @{
             // all the data being provided to this view
             // is available on the syncController therefore
-            // this view does not need its own control
+            // this view does not need its own controller
         }
         <div data-ng-controller="syncController" class="push-top-down-md">
 

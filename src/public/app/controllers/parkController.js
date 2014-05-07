@@ -1,9 +1,9 @@
-﻿'use strict';
-
-offlinesApp.controller('parkController', 
+﻿offlinesApp.controller('parkController', 
 
             ['$scope','$window', '$location', '$timeout', 'parkService', 
     function ($scope,  $window,   $location,   $timeout,   parkService) {
+
+        'use strict';
 
         var loc = $location.absUrl();
         var parts = loc.split('/');

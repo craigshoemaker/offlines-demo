@@ -1,8 +1,8 @@
-﻿'use strict';
-
-offlinesApp.factory('localPersistenceStrategy', 
+﻿offlinesApp.factory('localPersistenceStrategy', 
            ['localStorage', '_', '$q', 'Enums', 
     function(localStorage,   _,   $q,   Enums){
+
+        'use strict';
 
         var svc = {
 

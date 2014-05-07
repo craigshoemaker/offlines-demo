@@ -12,5 +12,6 @@
     });
 
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.registerTask('default', ['nodemon']);
 };

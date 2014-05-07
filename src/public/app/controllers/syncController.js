@@ -1,9 +1,9 @@
-﻿'use strict';
-
-offlinesApp.controller('syncController', 
+﻿offlinesApp.controller('syncController', 
 
             ['$scope', '$rootScope', '$timeout', '$window', 'parkService', 'syncService',
     function ($scope,   $rootScope,   $timeout,   $window,   parkService,   syncService) {
+
+        'use strict';
 
         $rootScope.error = null;
         $scope.showSyncMessage = false;
