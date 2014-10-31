@@ -1,7 +1,7 @@
 ﻿offlinesApp.controller('syncController', 
 
-            ['$scope', '$rootScope', '$timeout', 'parkService', 'syncService', 'Offline',
-    function ($scope,   $rootScope,   $timeout,   parkService,   syncService,   Offline) {
+            ['$scope', '$rootScope', '$timeout', 'parkService', 'syncService', 'Offline', '_',
+    function ($scope,   $rootScope,   $timeout,   parkService,   syncService,   Offline,   _) {
 
         'use strict';
 
@@ -27,12 +27,14 @@
             });
         };
 
+        var debouncedGetDataAndSetSyncMessage = _.debounce(getDataAndSetSyncMessage, 500);
+
         Offline.on('confirmed-down', function () {
             $scope.showSyncMessage = false;
         });
 
         Offline.on('confirmed-up', function () {
-            getDataAndSetSyncMessage();
+            debouncedGetDataAndSetSyncMessage();
         });
 
         $scope.sync = function(){
@@ -54,6 +56,6 @@
                 });
         };
 
-        getDataAndSetSyncMessage();
+        debouncedGetDataAndSetSyncMessage();
 
     }]);

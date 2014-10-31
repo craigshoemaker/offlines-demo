@@ -61,9 +61,7 @@
 
                             svc.removeWaitTimesFromLocalData();
 
-                            deferred.resolve({
-                                success: result,
-                            });
+                            deferred.resolve(result);
                         })
                         .error(function(error){
                             deferred.reject(error);

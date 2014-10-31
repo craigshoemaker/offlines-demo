@@ -40,7 +40,7 @@
             @html.block('body')
         </article>
         <hr />
-        <a href="/data">All Data</a>
+        <a href="/data" class="btn btn-default btn-xs">All Data</a>
         <script src="/lib/jquery/dist/jquery.min.js"></script>
         <script src="/lib/lodash/dist/lodash.min.js"></script>
         <script src="/lib/angular/angular.js"></script>

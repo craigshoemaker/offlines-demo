@@ -20,53 +20,50 @@
 
             parks: null,
 
-            getParksAndRides: function(){
+            getParksAndRides: function () {
 
                 var deferred = $q.defer();
 
                 var localStorageKey = Enums.localStorageKeys.parks;
 
-                if(localStorage[localStorageKey] === undefined){
+                var isParkDataCachedInLocalStorage = function () { 
+                    return localStorage[localStorageKey] === undefined;
+                };
+
+                if(isParkDataCachedInLocalStorage()){
 
                     remotePersistenceStrategy.getParksAndRides().then(
                         function(parks){
                             localStorage[localStorageKey] = JSON.stringify(parks);
                             deferred.resolve(parks);
                         },
-                        function(error){
-                            deferred.reject(error);
-                        });
+                        deferred.reject);
 
                 } else {
 
-                    localPersistenceStrategy.getParksAndRides().then(
-                        function(parks){
-                            deferred.resolve(parks);
-                        },
-                        function(error){
-                            deferred.reject(error);
-                        });
+                    localPersistenceStrategy.getParksAndRides()
+                                            .then(deferred.resolve, deferred.reject);
                 }
 
                 return deferred.promise;
             },
 
-            getParkByName: function(name){
+            getParkByName: function (name) {
+
                 var deferred = $q.defer();
 
                 var parkName = decodeURIComponent(name);
 
                 svc.getParksAndRides().then(
-                    function(parks){
-                        parks.forEach(function(park){
-                            if(park.name === parkName){
-                                deferred.resolve(park);
+                    function (parks) {
+                        for (var i = 0; i < parks.length; i++) {
+                            if (park[i].name === parkName) {
+                                deferred.resolve(park[i]);
+                                break;
                             }
-                        });
-                    }, 
-                    function(error){
-                        deferred.reject(error);
-                    });
+                        }
+                    },
+                    deferred.reject);
 
                 return deferred.promise;
             },

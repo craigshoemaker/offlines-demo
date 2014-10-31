@@ -1,4 +1,5 @@
-﻿offlinesApp.factory('localPersistenceStrategy', 
+﻿offlinesApp.factory('localPersistenceStrategy',
+
            ['localStorage', '_', '$q', 'Enums', 
     function(localStorage,   _,   $q,   Enums){
 
@@ -12,8 +13,6 @@
 
                 try {
                     var currentPark = _.clone(park, true);
-
-                    var localStorageKey = Enums.localStorageKeys.parks;
 
                     var addNewDurationIntoWaitTimesArray = function(currentPark){
                         currentPark.rides.forEach(function(ride){
@@ -31,6 +30,8 @@
                         return currentPark;
                     };
                     
+                    var localStorageKey = Enums.localStorageKeys.parks;
+
                     var extractExistingDataFromLocalStorage = function(){
 
                         var localData = localStorage[localStorageKey];
@@ -47,7 +48,7 @@
 
                         var i;
                         var existingPark = _.find(parks, function(park, index){
-                            var match = park.name === currentPark.name;
+                            var match = (park.name === currentPark.name);
                             if(match) i = index;
                             return match;
                         });
@@ -104,7 +105,8 @@
     
     }]);
 
-offlinesApp.factory('remotePersistenceStrategy', 
+offlinesApp.factory('remotePersistenceStrategy',
+
            ['$http', '$q',
     function($http,   $q){
 
