@@ -58,8 +58,6 @@
     <Compile Include="public\lib\angular\angular.min.js" />
     <Compile Include="public\lib\bootstrap\dist\js\bootstrap.js" />
     <Compile Include="public\lib\bootstrap\dist\js\bootstrap.min.js" />
-    <Compile Include="public\lib\jquery\dist\jquery.js" />
-    <Compile Include="public\lib\jquery\dist\jquery.min.js" />
     <Compile Include="public\lib\lodash\dist\lodash.min.js" />
     <Compile Include="public\lib\moment\min\moment.min.js" />
     <Compile Include="public\lib\offlinejs-simulate-ui\offline-simulate-ui.min.js" />
@@ -109,7 +107,6 @@
     <Content Include="public\lib\jasmine\dist\jasmine-standalone-2.0.0-rc3.zip" />
     <Content Include="public\lib\jasmine\dist\jasmine-standalone-2.0.0-rc5.zip" />
     <Content Include="public\lib\jasmine\dist\jasmine-standalone-2.0.0.zip" />
-    <Content Include="public\lib\jquery\dist\jquery.min.map" />
     <Content Include="public\lib\offline\img\tiny-image.gif" />
     <Content Include="public\lib\offline\themes\offline-language-english-indicator.css" />
     <Content Include="public\lib\offline\themes\offline-language-english.css" />
@@ -163,8 +160,6 @@
     <Folder Include="public\lib\bootstrap\dist\css\" />
     <Folder Include="public\lib\bootstrap\dist\fonts\" />
     <Folder Include="public\lib\bootstrap\dist\js\" />
-    <Folder Include="public\lib\jquery\" />
-    <Folder Include="public\lib\jquery\dist\" />
     <Folder Include="public\lib\offlinejs-simulate-ui\" />
     <Folder Include="public\lib\offline\" />
     <Folder Include="public\lib\offline\img\" />
