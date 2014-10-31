@@ -33,6 +33,7 @@
                 <i class="fa fa-smile-o"></i> All local data is now saved to the server.
             </div>
         </div>
+
         @if(model.title){
         <h1>@model.title</h1>
         }
@@ -41,7 +42,7 @@
         </article>
         <hr />
         <a href="/data" class="btn btn-default btn-xs">All Data</a>
-        <script src="/lib/jquery/dist/jquery.min.js"></script>
+
         <script src="/lib/lodash/dist/lodash.min.js"></script>
         <script src="/lib/angular/angular.js"></script>
         <script src="/lib/angular-route/angular-route.js"></script>

@@ -25,7 +25,6 @@ CACHE:
 /css/site.css
 
 #scripts.libraries
-/lib/jquery/dist/jquery.min.js
 /lib/lodash/dist/lodash.min.js
 /lib/angular/angular.js
 /lib/angular-route/angular-route.js

@@ -57,8 +57,8 @@
                 svc.getParksAndRides().then(
                     function (parks) {
                         for (var i = 0; i < parks.length; i++) {
-                            if (park[i].name === parkName) {
-                                deferred.resolve(park[i]);
+                            if (parks[i].name === parkName) {
+                                deferred.resolve(parks[i]);
                                 break;
                             }
                         }
