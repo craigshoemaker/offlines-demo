@@ -1,6 +1,6 @@
 # Offlines Demo
 
-Offlines is an application is an HTML5 offline application that demonstrates how to build an application aware of its internet connectivity state and continues to work without a persistent connection to the web.
+Offlines is an HTML5 offline application that demonstrates how to build an app aware of its internet connectivity state and continues to work without a persistent connection to the web.
 
 ---------------------------
 
