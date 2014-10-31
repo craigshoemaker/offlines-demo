@@ -4,14 +4,16 @@
 
         <div data-ng-controller="parkController" class="push-top-down-md">
 
-            <div class="alert alert-danger" data-ng-hide="error === null">
+            <div class="alert alert-danger" 
+				 data-ng-cloak
+				 data-ng-hide="error === null">
                 <span data-ng-bind="error.message"></span>
             </div>
 
             <div class="list">
                 <div class="row" data-ng-repeat="ride in park.rides">
                     <div class="col-xs-6 push-top-down-xxs">
-                        <span class="h4">{{ride.name}}</span>
+                        <span class="h4" data-ng-bind="ride.name"></span>
                     </div>
                     <div class="col-xs-4">
                         <select class="form-control" 

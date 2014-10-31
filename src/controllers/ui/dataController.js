@@ -10,7 +10,7 @@
 
                 response.render('list', 
                     {
-                        title:'Parks', 
+                        title:'Wait Times by Park', 
                         parks: parks,
                         error: error,
                         isOfflinePage: false

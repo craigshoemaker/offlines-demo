@@ -68,7 +68,6 @@
     <Compile Include="spec\data\index.spec.js" />
     <Content Include=".bowerrc" />
     <Content Include="db.cmd" />
-    <Content Include="go.cmd" />
     <Content Include="package.json" />
     <Content Include="public\css\site.css" />
     <Content Include="public\img\fav.png" />
@@ -126,7 +125,6 @@
     <Content Include="public\lib\offline\themes\offline-theme-slide-indicator.css" />
     <Content Include="public\lib\offline\themes\offline-theme-slide.css" />
     <Content Include="public\offline.html" />
-    <Content Include="README.md" />
     <Content Include="tst.cmd" />
     <Content Include="views\appcache.vash" />
     <Content Include="views\index.vash" />

@@ -9,13 +9,15 @@
         }
         <div data-ng-controller="syncController" class="push-top-down-md">
 
-            <div class="alert alert-danger" data-ng-hide="error === null">
+            <div class="alert alert-danger" 
+				 data-ng-cloak
+				 data-ng-hide="error === null">
                 <span data-ng-bind="error.message"></span>
             </div>
 
             <div class ="list">
                 <div ng-repeat="park in parks">
-                    <div><a href="/parks/{{park.name}}"><span class="h3">{{park.name}}</span></a></div>
+                    <div><a href="/parks/{{park.name}}"><span class="h3" data-ng-bind="park.name"></span></a></div>
                 </div>
             </div>
         </div>

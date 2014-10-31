@@ -1,7 +1,7 @@
 ﻿offlinesApp.controller('syncController', 
 
-            ['$scope', '$rootScope', '$timeout', '$window', 'parkService', 'syncService',
-    function ($scope,   $rootScope,   $timeout,   $window,   parkService,   syncService) {
+            ['$scope', '$rootScope', '$timeout', 'parkService', 'syncService', 'Offline',
+    function ($scope,   $rootScope,   $timeout,   parkService,   syncService,   Offline) {
 
         'use strict';
 
@@ -27,11 +27,11 @@
             });
         };
 
-        $window.Offline.on('confirmed-down', function () {
+        Offline.on('confirmed-down', function () {
             $scope.showSyncMessage = false;
         });
 
-        $window.Offline.on('confirmed-up', function () {
+        Offline.on('confirmed-up', function () {
             getDataAndSetSyncMessage();
         });
 

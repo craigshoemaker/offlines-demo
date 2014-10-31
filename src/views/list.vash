@@ -9,10 +9,22 @@
                 margin-bottom:2em;
             }
 
-                .waitTime table caption {
-                    font-weight:bold;
-                    margin-top:10px;
-                }
+			.park {
+				border:1px solid #eee;
+				margin:2px;
+				border-radius:6px;
+			}
+
+			.park:hover {
+				border:1px solid #ccc;
+			}
+
+            .waitTime table caption {
+                font-weight:bold;
+				font-size:1em;
+                margin-top:10px;
+				border-bottom:3px solid #ccc;
+            }
         </style>
     })
 
@@ -21,48 +33,47 @@
         <div class="row">
 
         @model.parks.forEach(function(park, index){
-            @{ var offsetClassName = (index % 2)?'col-sm-offset-1':''}
-            <div class="col-sm-5 well @offsetClassName">
+            <div class="col-sm-5 park">
                 <h2 class="h3">@park.name</h2>
-                    @park.rides.forEach(function(ride){
-                        <div class="waitTime">
-                        <table class="table table-striped table-responsive table-condensed table-hover">
-                            <caption class="text-left">@ride.name</caption>
-                            <thead>
-                                <tr>
-                                    <th>Minutes</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @{ ride.waitTimes.reverse(); }
-                            @ride.waitTimes.forEach(function(waitTime){
-                                @{ 
-                                    var dt = waitTime.dateTime;
+                @park.rides.forEach(function(ride){
+                    <div class="waitTime">
+                    <table class="table table-striped table-hover">
+                        <caption class="text-left">@ride.name</caption>
+                        <thead>
+                            <tr>
+                                <th>Minutes</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @{ ride.waitTimes.reverse(); }
+                        @ride.waitTimes.forEach(function(waitTime){
+                            @{ 
+                                var dt = waitTime.dateTime;
 
-                                    var month = dt.getMonth()+1;
+                                var month = dt.getMonth()+1;
 
-                                    var h = dt.getHours();
-                                    var hours = (h>12)?h-12:h;
+                                var h = dt.getHours();
+                                var hours = (h>12)?h-12:h;
 
-                                    var amPm = (h>11)?'pm':'am';
+                                var amPm = (h>11)?'pm':'am';
 
-                                    var mins = dt.getMinutes();
-                                    mins = ('00' + mins).slice(-2);
+                                var mins = dt.getMinutes();
+                                mins = ('00' + mins).slice(-2);
 
-                                    var day = dt.getDate();
+                                var day = dt.getDate();
 
-                                    var year = dt.getFullYear();
-                                }
-                                <tr>
-                                    <td>@waitTime.duration</td>
-                                    <td>@hours:@mins @amPm on @month/@day/@year</td>
-                                </tr>
-                            })
-                            </tbody>
-                        </table>
-                        </div>
-                    })
+                                var year = dt.getFullYear();
+                            }
+                            <tr>
+                                <td>@waitTime.duration</td>
+                                <td>@hours:@mins @amPm on @month/@day/@year</td>
+                            </tr>
+                        })
+                        </tbody>
+                    </table>
+                    </div>
+                })
             </div>
         })
 
