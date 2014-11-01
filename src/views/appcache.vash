@@ -1,6 +1,5 @@
 ﻿CACHE MANIFEST
 #version 1.0
-# @ (new Date()).toString() }
 
 CACHE:
 #pages
@@ -29,9 +28,8 @@ CACHE:
 /lib/angular/angular.js
 /lib/angular-route/angular-route.js
 /lib/angular-resource/angular-resource.js
-/lib/bootstrap/dist/js/bootstrap.min.js
 /lib/offline/offline.min.js
-/lib/offlinejs-simulate-ui/offline-simulate-ui.min.js
+/lib/offlinejs-simulate-ui/offline-simulate-ui.min.js # remove for production
 
 #scripts.app
 /app/app.js
