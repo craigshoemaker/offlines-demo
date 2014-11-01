@@ -1,4 +1,4 @@
-﻿offlinesApp.controller('syncController', 
+﻿angular.module('offlinesApp').controller('syncController',
 
             ['$scope', '$rootScope', '$timeout', 'parkService', 'syncService', 'Offline', '_',
     function ($scope,   $rootScope,   $timeout,   parkService,   syncService,   Offline,   _) {

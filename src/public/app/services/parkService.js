@@ -1,4 +1,5 @@
-﻿offlinesApp.service('parkService', 
+﻿angular.module('offlinesApp').service('parkService',
+
             ['$http', '$q', 'localStorage', 'Offline', 'remotePersistenceStrategy', 'localPersistenceStrategy', 'Enums',
     function ($http,   $q,   localStorage,   Offline,   remotePersistenceStrategy,   localPersistenceStrategy,   Enums){
 

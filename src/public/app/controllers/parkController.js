@@ -1,4 +1,4 @@
-﻿offlinesApp.controller('parkController', 
+﻿angular.module('offlinesApp').controller('parkController', 
 
             ['$scope','$window', '$location', '$timeout', 'parkService', 
     function ($scope,  $window,   $location,   $timeout,   parkService) {

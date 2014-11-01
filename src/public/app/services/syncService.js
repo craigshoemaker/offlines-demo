@@ -1,4 +1,5 @@
-﻿offlinesApp.service('syncService',
+﻿angular.module('offlinesApp').service('syncService',
+
             ['localStorage', '$http', '$rootScope', '_', '$q', 'Enums',
     function( localStorage,   $http,   $rootScope,   _,   $q,   Enums){
 

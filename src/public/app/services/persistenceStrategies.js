@@ -1,4 +1,4 @@
-﻿offlinesApp.factory('localPersistenceStrategy',
+﻿angular.module('offlinesApp').factory('localPersistenceStrategy',
 
            ['localStorage', '_', '$q', 'Enums', 
     function(localStorage,   _,   $q,   Enums){
@@ -105,7 +105,7 @@
     
     }]);
 
-offlinesApp.factory('remotePersistenceStrategy',
+angular.module('offlinesApp').factory('remotePersistenceStrategy',
 
            ['$http', '$q',
     function($http,   $q){
