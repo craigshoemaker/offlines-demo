@@ -27,11 +27,11 @@
 
                 var localStorageKey = Enums.localStorageKeys.parks;
 
-                var isParkDataCachedInLocalStorage = function () { 
+                var isParkDataNotCachedInLocalStorage = function () { 
                     return localStorage[localStorageKey] === undefined;
                 };
 
-                if(isParkDataCachedInLocalStorage()){
+                if (isParkDataNotCachedInLocalStorage()) {
 
                     remotePersistenceStrategy.getParksAndRides().then(
                         function(parks){
