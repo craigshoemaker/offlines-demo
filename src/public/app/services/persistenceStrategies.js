@@ -30,8 +30,6 @@
                         return currentPark;
                     };
                     
-                    var localStorageKey = Enums.localStorageKeys.parks;
-
                     var extractExistingDataFromLocalStorage = function(){
 
                         var localData = localStorage[localStorageKey];
@@ -43,6 +41,8 @@
 
                         return null;
                     };
+
+                    var localStorageKey = Enums.localStorageKeys.parks;
 
                     var mergeNewAndLocalData = function(parks, currentPark){
 
@@ -107,53 +107,54 @@
 
 angular.module('offlinesApp').factory('remotePersistenceStrategy',
 
-           ['$http', '$q',
-    function($http,   $q){
+            ['$http', '$q',
+    function ($http,   $q) {
 
-    var svc = {
+        'use strict';
 
-        addWaitTime: function(park){
-            var deferred = $q.defer();
+        var svc = {
 
-            park.rides.forEach(function(ride){
-                if(ride.newDuration){
+            addWaitTime: function(park){
+                var deferred = $q.defer();
 
-                    var url = '/api/parks/' + 
-                                park.name + '/' + 
-                                encodeURIComponent(ride.name) + '/' + 
-                                ride.newDuration.duration;
+                park.rides.forEach(function(ride){
+                    if(ride.newDuration){
 
-                    $http.post(url, {}).success(function(waitTime){
-                        deferred.resolve(waitTime);
-                    }).error(function(error){
+                        var url = '/api/parks/' + 
+                                    park.name + '/' + 
+                                    encodeURIComponent(ride.name) + '/' + 
+                                    ride.newDuration.duration;
+
+                        $http.post(url, {}).success(function(waitTime){
+                            deferred.resolve(waitTime);
+                        }).error(function(error){
+                            deferred.reject(error);
+                        });
+                    }
+                })
+
+                return deferred.promise;
+            },
+
+            getParksAndRides: function(){
+
+                var deferred = $q.defer();
+
+                $http.get('/api/parks')
+                    .success(function(parks){
+                        deferred.resolve(parks);  
+                    })
+                    .error(function(error){
                         deferred.reject(error);
                     });
-                }
-            })
 
-            return deferred.promise;
-        },
+                return deferred.promise;
 
-        getParksAndRides: function(){
+            }
+        };
 
-            var deferred = $q.defer();
-
-            $http.get('/api/parks')
-                .success(function(parks){
-                    deferred.resolve(parks);  
-                })
-                .error(function(error){
-                    deferred.reject(error);
-                });
-
-            return deferred.promise;
-
-        }
-    };
-
-    return {
-        addWaitTime: svc.addWaitTime,
-        getParksAndRides: svc.getParksAndRides
-    };
-    
+        return {
+            addWaitTime: svc.addWaitTime,
+            getParksAndRides: svc.getParksAndRides
+        };
 }]);
