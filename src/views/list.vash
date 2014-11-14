@@ -31,7 +31,6 @@
 	@html.block('body', function(model){
 
         <div class="row">
-		<h1>hello</h1>
 
         @model.parks.forEach(function(park, index){
             <div class="col-sm-5 park">
