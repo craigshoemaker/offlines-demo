@@ -9,6 +9,7 @@
         }
         <div data-ng-controller="syncController" class="push-top-down-md">
 
+		<h1>test</h1>
             <div class="alert alert-danger" 
 				 data-ng-cloak
 				 data-ng-hide="error === null">
